@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E6B99F"
-    tools:context=".MainActivity"
+    tools:context=".SignUpActivity"
     tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="37dp">
+    tools:layout_editor_absoluteY="37dp"
+    android:background="#E6B99F">
 
     <TextView
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         android:fontFamily="@font/quicksand"
         android:gravity="center"
         android:letterSpacing="0.1"
-        android:text="Coin Monkey - Login"
+        android:text="Coin Monkey - Sign up"
         android:textColor="#87644F"
         android:textSize="40dp"
         android:textStyle="bold"
@@ -24,13 +24,15 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.025" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="363dp"
-        android:layout_height="379dp"
+        android:layout_height="439dp"
+        android:adjustViewBounds="true"
         android:elevation="2dp"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,12 +41,13 @@
         app:srcCompat="@drawable/loginbackground" />
 
     <Button
+        android:id="@+id/register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#FFFDD0"
         android:fontFamily="@font/quicksand"
         android:letterSpacing="0.15"
-        android:text="Login"
+        android:text="Register"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textFontWeight="700"
@@ -54,17 +57,18 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.745" />
+        app:layout_constraintVertical_bias="0.863" />
+
 
     <EditText
-        android:id="@+id/editTextPassword"
+        android:id="@+id/signUpFirstName"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:background="@drawable/edittextlogin"
         android:ems="10"
         android:fontFamily="@font/quicksand"
-        android:hint="Enter your password"
-        android:inputType="textPassword"
+        android:hint="Enter your first name"
+        android:inputType="textPersonName"
         android:padding="10dp"
         android:textColor="@color/white"
         android:textColorHint="#FFFDD0"
@@ -74,10 +78,29 @@
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.631" />
+        app:layout_constraintVertical_bias="0.421" />
 
     <EditText
-        android:id="@+id/editTextTextPersonUsermame"
+        android:id="@+id/signUpLastName"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittextlogin"
+        android:ems="10"
+        android:fontFamily="@font/quicksand"
+        android:hint="Enter your last name"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:textColorHint="#FFFDD0"
+        android:translationZ="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/signUpUsermame"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:background="@drawable/edittextlogin"
@@ -91,10 +114,50 @@
         android:translationZ="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.532" />
+        app:layout_constraintVertical_bias="0.584" />
+
+    <EditText
+        android:id="@+id/signUpPassword"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittextlogin"
+        android:ems="10"
+        android:fontFamily="@font/quicksand"
+        android:hint="Enter your password"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:textColorHint="#FFFDD0"
+        android:translationZ="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.663" />
+
+    <EditText
+        android:id="@+id/signUpConfirmPassword"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittextlogin"
+        android:ems="10"
+        android:fontFamily="@font/quicksand"
+        android:hint="Confirm your password"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:textColorHint="#FFFDD0"
+        android:translationZ="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.74" />
 
     <TextView
         android:id="@+id/textView"
@@ -103,7 +166,7 @@
         android:fontFamily="@font/quicksand"
         android:gravity="center"
         android:paddingRight="100dp"
-        android:text="Not trading with us yet?"
+        android:text="Already trading with us?"
         android:textColor="#87644F"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -111,23 +174,23 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.914" />
+        app:layout_constraintVertical_bias="0.941" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/clickHereLogIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/quicksand"
-        android:text="Join here!"
+        android:text="Click here!"
         android:textColor="#554A44"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.856"
+        app:layout_constraintHorizontal_bias="0.858"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.914" />
+        app:layout_constraintVertical_bias="0.941" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -138,7 +201,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.361"
+        app:layout_constraintVertical_bias="0.203"
         app:srcCompat="@drawable/monkey" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
