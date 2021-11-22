@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E6B99F"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="37dp">
 
     <TextView
         android:layout_width="match_parent"
@@ -18,9 +20,11 @@
         android:textSize="40dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.025"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintVertical_bias="0.025" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -29,31 +33,32 @@
         android:elevation="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.605"
         app:srcCompat="@drawable/loginbackground" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#B5AB85"
+        android:backgroundTint="#FFFDD0"
         android:fontFamily="@font/quicksand"
+        android:letterSpacing="0.15"
         android:text="Login"
         android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textFontWeight="500"
+        android:textColor="@color/black"
+        android:textFontWeight="700"
         app:cornerRadius="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.691" />
+        app:layout_constraintVertical_bias="0.745" />
 
     <EditText
         android:id="@+id/editTextPassword"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:background="@drawable/edittextlogin"
         android:ems="10"
@@ -62,17 +67,18 @@
         android:inputType="textPassword"
         android:padding="10dp"
         android:textColor="@color/white"
-        android:textColorHint="#B5AB85"
+        android:textColorHint="#FFFDD0"
         android:translationZ="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.577" />
+        app:layout_constraintVertical_bias="0.631" />
 
     <EditText
         android:id="@+id/editTextTextPersonUsermame"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:background="@drawable/edittextlogin"
         android:ems="10"
@@ -81,12 +87,58 @@
         android:inputType="textPersonName"
         android:padding="10dp"
         android:textColor="@color/white"
-        android:textColorHint="#B5AB85"
+        android:textColorHint="#FFFDD0"
+        android:translationZ="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.532" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/quicksand"
+        android:gravity="center"
+        android:paddingRight="100dp"
+        android:text="Not trading with us yet?"
+        android:textColor="#87644F"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.914" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/quicksand"
+        android:text="Join here!"
+        android:textColor="#554A44"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.856"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.914" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="163dp"
+        android:layout_height="142dp"
         android:translationZ="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.478" />
+        app:layout_constraintVertical_bias="0.361"
+        app:srcCompat="@drawable/monkey" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

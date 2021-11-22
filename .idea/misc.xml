@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Christian/AndroidStudioProjects/CoinMonkey/app/src/main/res/layout/activity_main.xml" value="0.67" />
+        <entry key="..\:/Users/Christian/AndroidStudioProjects/CoinMonkey/app/src/main/res/drawable/edittextlogin.xml" value="0.5817708333333333" />
+        <entry key="..\:/Users/Christian/AndroidStudioProjects/CoinMonkey/app/src/main/res/drawable/rounding.xml" value="0.5817708333333333" />
+        <entry key="..\:/Users/Christian/AndroidStudioProjects/CoinMonkey/app/src/main/res/layout-v28/activity_main.xml" value="0.5" />
+        <entry key="..\:/Users/Christian/AndroidStudioProjects/CoinMonkey/app/src/main/res/layout/activity_main.xml" value="0.5" />
       </map>
     </option>
   </component>
