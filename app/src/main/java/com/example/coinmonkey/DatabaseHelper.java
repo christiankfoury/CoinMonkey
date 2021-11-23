@@ -53,7 +53,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 " FOREIGN KEY (USERNAME) REFERENCES user_table (username))");
         sqLiteDatabase.execSQL("CREATE TABLE " + WATCHLIST_TABLE + " (WATCHLIST_ID integer primary key autoincrement, COIN_SYMBOL text, USERNAME text, " +
                 " FOREIGN KEY (USERNAME) REFERENCES user_table (username))");
-        sqLiteDatabase.execSQL("CREATE TABLE " + PORTFOLIO_TABLE + " (PORTFOLIO_ID primary key autoincrement, COIN_SYMBOL text, USERNAME text, AMOUNT decimal(15,2), VALUE decimal(15,2), " +
+        sqLiteDatabase.execSQL("CREATE TABLE " + PORTFOLIO_TABLE + " (PORTFOLIO_ID integer primary key autoincrement, COIN_SYMBOL text, USERNAME text, AMOUNT decimal(15,2), VALUE decimal(15,2), " +
                 " FOREIGN KEY (USERNAME) REFERENCES user_table (username))");
     }
 
@@ -137,7 +137,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getUser(String username){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Cursor res = db.rawQuery("SELECT * FROM " + USER_TABLE + " WHERE USERNAME = " + username , null);
+        Cursor res = db.query(USER_TABLE, new String[]{USER_COL_1,USER_COL_2, USER_COL_3, USER_COL_4, USER_COL_5}, "username = ?", new String[] {username}, null, null, null);
 
         return res;
     }

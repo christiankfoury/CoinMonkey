@@ -51,11 +51,13 @@ public class MainActivity extends AppCompatActivity {
                 myDb = new DatabaseHelper(context);
 
                if (myDb.getUser(usernameInput.getText().toString().trim()).getCount() == 0){
-                   Toast.makeText(context, "The username or password does not exist!", Toast.LENGTH_SHORT).show();
+                   Toast.makeText(context, "This username does not exist!", Toast.LENGTH_SHORT).show();
                }
                else{
                    Cursor cursor = myDb.getUser(usernameInput.getText().toString().trim());
-                   User user = new User(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getDouble(4));
+                   cursor.moveToFirst();
+                   User user = new User(cursor.getString(0).toString(), cursor.getString(1).toString(),
+                           cursor.getString(2).toString(), cursor.getString(3).toString(), cursor.getDouble(4));
 
                    if(!user.getPassword().equals(passwordInput.getText().toString().trim())){
                        Toast.makeText(context, "The username/password combination is invalid!", Toast.LENGTH_SHORT).show();
