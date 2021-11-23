@@ -18,8 +18,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String PORTFOLIO_TABLE = "portfolio_table";
 
     public static final String USER_COL_1 = "USERNAME";
-    public static final String USER_COL_2 = "PASSWORD";
-    public static final String USER_COL_3 = "BALANCE";
+    public static final String USER_COL_2 = "FIRST_NAME";
+    public static final String USER_COL_3 = "LAST_NAME";
+    public static final String USER_COL_4 = "PASSWORD";
+    public static final String USER_COL_5 = "BALANCE";
 
     public static final String ORDERS_COL_1 = "ORDERS_ID";
     public static final String ORDERS_COL_2 = "COIN_SYMBOL";
@@ -46,7 +48,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("CREATE TABLE " + USER_TABLE + " (USERNAME text primary key, PASSWORD text, BALANCE long)");
+        sqLiteDatabase.execSQL("CREATE TABLE " + USER_TABLE + " (USERNAME text primary key, FIRST_NAME text, LAST_NAME text, PASSWORD text, BALANCE long)");
         sqLiteDatabase.execSQL("CREATE TABLE " + ORDERS_TABLE + " (ORDERS_ID integer primary key autoincrement, COIN_SYMBOL text, USERNAME text, TYPE text, AMOUNT decimal(15,2), VALUE decimal(15,2)," +
                 " FOREIGN KEY (USERNAME) REFERENCES user_table (username))");
         sqLiteDatabase.execSQL("CREATE TABLE " + WATCHLIST_TABLE + " (WATCHLIST_ID integer primary key autoincrement, COIN_SYMBOL text, USERNAME text, " +
@@ -64,13 +66,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public boolean insertUser(String username, String password){
+    public boolean insertUser(String username,String first_name, String last_name, String password){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues cv = new ContentValues();
         cv.put(USER_COL_1,username);
-        cv.put(USER_COL_2,password);
-        cv.put(USER_COL_3,0.0);
+        cv.put(USER_COL_2,first_name);
+        cv.put(USER_COL_3,last_name);
+        cv.put(USER_COL_4,password);
+        cv.put(USER_COL_5,0.0);
 
         long result = db.insert(USER_TABLE, null, cv);
 
@@ -166,7 +170,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues cv = new ContentValues();
-        cv.put(USER_COL_2,password);
+        cv.put(USER_COL_4,password);
         db.update(USER_TABLE,cv,"USERNAME = ? ", new String[] {username});
 
         return true;
@@ -176,7 +180,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues cv = new ContentValues();
-        cv.put(USER_COL_3,balance);
+        cv.put(USER_COL_5,balance);
         int result = db.update(USER_TABLE,cv,"USERNAME = ? ", new String[] {username});
 
         if (result == -1){
