@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        startActivity(new Intent(MainActivity.this, CoinDetailsActivity.class));
+
         signUp = findViewById(R.id.joinHereSignUp);
         usernameInput = findViewById(R.id.logInUsername);
         passwordInput = findViewById(R.id.logInPassword);
