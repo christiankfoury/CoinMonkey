@@ -146,10 +146,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    public Cursor getWatchlist(String username){
+    public Cursor getWatchlist(String username, String coin_symbol){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Cursor res = db.rawQuery("SELECT * FROM " + WATCHLIST_TABLE + " WHERE USERNAME = " + username, null);
+        Cursor res = db.rawQuery("SELECT * FROM " + WATCHLIST_TABLE + " WHERE USERNAME = " + username + "AND COIN_SYMBOL = " + coin_symbol, null);
 
         return res;
     }
@@ -191,7 +191,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
         cv.put(PORTFOLIO_COL_4,amount);
         cv.put(PORTFOLIO_COL_5,value);
-        int result = db.update(PORTFOLIO_TABLE,cv,"USERNAME = ? & COIN_SYMBOL = ?", new String[] {username,coin_symbol});
+        int result = db.update(PORTFOLIO_TABLE,cv,"USERNAME = ? AND COIN_SYMBOL = ?", new String[] {username,coin_symbol});
 
         if (result == -1){
             return false;
@@ -202,15 +202,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean deleteWatchlist(String username, String coin_symbol){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        int result = db.delete(WATCHLIST_TABLE, "USERNAME = ? & COIN_SYMBOL = ?", new String[] {username,coin_symbol});
+        int result = db.delete(WATCHLIST_TABLE, "USERNAME = ? AND COIN_SYMBOL = ?", new String[] {username,coin_symbol});
 
         if (result == -1){
             return false;
         }
         else return true;
     }
-
-
-
-
 }
