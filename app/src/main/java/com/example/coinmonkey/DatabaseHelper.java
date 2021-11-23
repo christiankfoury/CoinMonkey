@@ -138,7 +138,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    public Cursor getOrders(String username){
+    public Cursor getOrder(String username){
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor res = db.rawQuery("SELECT * FROM " + ORDERS_TABLE + " WHERE USERNAME = " + username, null);
@@ -181,5 +181,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return true;
     }
+
+
 
 }
