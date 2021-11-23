@@ -19,6 +19,7 @@ public class CoinsActivity extends AppCompatActivity {
     ArrayList<String> coinSymbols = new ArrayList<>();
     ArrayList<String> coinImages = new ArrayList<>();
     private RecyclerViewAdapter.RecyclerViewClickListener listener;
+    Intent intent = getIntent();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +76,11 @@ public class CoinsActivity extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(),coin_symbol + " was clicked!",Toast.LENGTH_SHORT).show();
 
-                //Intent intent = new Intent(CoinsActivity.this,)
+                Intent i = new Intent(CoinsActivity.this,CoinDetailsActivity.class);
+                i.putExtra("symbol",coin_symbol);
+                User user = (User) intent.getSerializableExtra("user");
+                i.putExtra("username",user.getUsername());
+                startActivity(i);
             }
         };
     }
