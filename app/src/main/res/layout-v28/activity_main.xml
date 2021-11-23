@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E6B99F"
+        android:background="#E6B99F"
     tools:context=".MainActivity"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="37dp">
@@ -39,6 +39,7 @@
         app:srcCompat="@drawable/loginbackground" />
 
     <Button
+        android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#FFFDD0"
@@ -57,7 +58,7 @@
         app:layout_constraintVertical_bias="0.745" />
 
     <EditText
-        android:id="@+id/editTextPassword"
+        android:id="@+id/logInPassword"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:background="@drawable/edittextlogin"
@@ -77,7 +78,7 @@
         app:layout_constraintVertical_bias="0.631" />
 
     <EditText
-        android:id="@+id/editTextTextPersonUsermame"
+        android:id="@+id/logInUsername"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:background="@drawable/edittextlogin"
@@ -114,7 +115,7 @@
         app:layout_constraintVertical_bias="0.914" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/joinHereSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/quicksand"

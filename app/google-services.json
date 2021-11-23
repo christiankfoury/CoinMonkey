@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "562842608478",
+    "firebase_url": "https://coinmonkey-a99d7-default-rtdb.firebaseio.com",
+    "project_id": "coinmonkey-a99d7",
+    "storage_bucket": "coinmonkey-a99d7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:562842608478:android:6f7a289fe69cbd91e6e5cf",
+        "android_client_info": {
+          "package_name": "com.example.coinmonkey"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "562842608478-plrl332bf02tuhqrm9illilmrlgen1l5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNSokQ2rAv40dQExyolQQXb40Kt2Kvz6I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "562842608478-plrl332bf02tuhqrm9illilmrlgen1l5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
