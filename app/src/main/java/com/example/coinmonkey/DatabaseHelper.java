@@ -2,6 +2,7 @@ package com.example.coinmonkey;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -46,9 +47,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("CREATE TABLE " + USER_TABLE + " (USERNAME text primary key, PASSWORD text, BALANCE long)");
-        sqLiteDatabase.execSQL("CREATE TABLE " + ORDERS_TABLE + " (ORDERS_ID integer primary key autoincrement, COIN_SYMBOL text, USERNAME text, TYPE text, AMOUNT integer, VALUE decimal(15,2))");
+        sqLiteDatabase.execSQL("CREATE TABLE " + ORDERS_TABLE + " (ORDERS_ID integer primary key autoincrement, COIN_SYMBOL text, USERNAME text, TYPE text, AMOUNT decimal(15,2), VALUE decimal(15,2))");
         sqLiteDatabase.execSQL("CREATE TABLE " + WATCHLIST_TABLE + " (WATCHLIST_ID integer primary key autoincrement, COIN_SYMBOL text, USERNAME text)");
-        sqLiteDatabase.execSQL("CREATE TABLE " + PORTFOLIO_TABLE + " (PORTFOLIO_ID primary key autoincrement, COIN_SYMBOL text, USERNAME text, AMOUNT integer, VALUE decimal(15,2))");
+        sqLiteDatabase.execSQL("CREATE TABLE " + PORTFOLIO_TABLE + " (PORTFOLIO_ID primary key autoincrement, COIN_SYMBOL text, USERNAME text, AMOUNT decimal(15,2), VALUE decimal(15,2))");
     }
 
     @Override
@@ -76,7 +77,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else return true;
     }
 
-    public boolean insertOrder(String coin_symbol, String username, String type, int amount, double value){
+    public boolean insertOrder(String coin_symbol, String username, String type, double amount, double value){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues cv = new ContentValues();
@@ -109,15 +110,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else return true;
     }
 
-    public boolean insertPortfolio(String coin_symbol, String username, String type, int amount, double value){
+    public boolean insertPortfolio(String coin_symbol, String username, double amount, double value){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues cv = new ContentValues();
-        cv.put(ORDERS_COL_2,coin_symbol);
-        cv.put(ORDERS_COL_3,username);
-        cv.put(ORDERS_COL_4,type);
-        cv.put(ORDERS_COL_5,amount);
-        cv.put(ORDERS_COL_6,value);
+        cv.put(PORTFOLIO_COL_2,coin_symbol);
+        cv.put(PORTFOLIO_COL_3,username);
+        cv.put(PORTFOLIO_COL_4,amount);
+        cv.put(PORTFOLIO_COL_5,value);
 
         long result = db.insert(ORDERS_TABLE, null, cv);
 
@@ -126,5 +126,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         else return true;
     }
+
+    public Cursor getUser(String username){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor res = db.rawQuery("SELECT * FROM " + USER_TABLE + " WHERE USERNAME = " + username , null);
+
+        return res;
+    }
+
+    public Cursor getOrders(String username){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor res = db.rawQuery("SELECT * FROM " + ORDERS_TABLE + " WHERE USERNAME = " + username, null);
+
+        return res;
+    }
+
+    public Cursor getPortfolio(String username){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor res = db.rawQuery("SELECT * FROM " + PORTFOLIO_TABLE + " WHERE USERNAME = " + username, null);
+
+        return res;
+    }
+
+
 
 }
