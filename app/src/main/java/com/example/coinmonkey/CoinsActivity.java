@@ -15,7 +15,9 @@ import java.util.ArrayList;
 public class CoinsActivity extends AppCompatActivity {
 
     Context context = this;
-    ArrayList<String> coinNames,coinSymbols,coinImages = new ArrayList<>();
+    ArrayList<String> coinNames = new ArrayList<>();
+    ArrayList<String> coinSymbols = new ArrayList<>();
+    ArrayList<String> coinImages = new ArrayList<>();
     private RecyclerViewAdapter.RecyclerViewClickListener listener;
 
     @Override
@@ -23,9 +25,6 @@ public class CoinsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coins);
 
-        ArrayList<String> coinNames = new ArrayList<>();
-        ArrayList<String> coinSymbols = new ArrayList<>();
-        ArrayList<String> coinImages = new ArrayList<>();
         coinNames.add("Bitcoin");
         coinNames.add("Ethereum");
         coinNames.add("Binance Coin");
@@ -41,6 +40,7 @@ public class CoinsActivity extends AppCompatActivity {
         coinNames.add("Crypto.com Coin");
         coinNames.add("Terra");
         coinNames.add("Litecoin");
+
         coinSymbols.add("BTC");
         coinSymbols.add("ETH");
         coinSymbols.add("BNB");
@@ -57,11 +57,14 @@ public class CoinsActivity extends AppCompatActivity {
         coinSymbols.add("LUNA");
         coinSymbols.add("LTC");
 
-        setOnClickListener();
+//        getApplicationContext().getResources().getDrawable(getApplicationContext().getResources().getIdentifier(coinSymbols, "drawable", getApplicationContext().getPackageName()));
+
+
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(coinNames,coinSymbols,coinImages,this,listener);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        setOnClickListener();
     }
 
     private void setOnClickListener(){
@@ -70,7 +73,7 @@ public class CoinsActivity extends AppCompatActivity {
             public void onClick(View view, int position) {
                 String coin_symbol = coinSymbols.get(position);
 
-                Toast.makeText(context,coin_symbol + " was clicked!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),coin_symbol + " was clicked!",Toast.LENGTH_SHORT).show();
 
                 //Intent intent = new Intent(CoinsActivity.this,)
             }

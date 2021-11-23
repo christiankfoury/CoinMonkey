@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.squareup.picasso.Picasso;
+//import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -44,9 +44,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.name.setText(coinNameList.get(position));
         holder.symbol.setText(coinSymbolList.get(position));
-        Picasso.get()
-                .load(coinImagesList.get(position) + ".jpg")
-                .into(holder.image);
+        holder.image.setImageResource(myContext.getResources().getIdentifier(coinSymbolList.get(position).toLowerCase(), "drawable", myContext.getPackageName()));
+//        getApplicationContext().getResources().getDrawable(getApplicationContext().getResources().getIdentifier(coinSymbols, "drawable", getApplicationContext().getPackageName()));
     }
 
     @Override
