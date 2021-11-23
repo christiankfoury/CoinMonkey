@@ -177,10 +177,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         ContentValues cv = new ContentValues();
         cv.put(USER_COL_3,balance);
-        db.update(USER_TABLE,cv,"USERNAME = ? ", new String[] {username});
+        int result = db.update(USER_TABLE,cv,"USERNAME = ? ", new String[] {username});
 
-        return true;
+        if (result == -1){
+            return false;
+        }
+        else return true;
     }
+
+    public boolean updatePortfolio(String username, String coin_symbol, double amount, double value ){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put(PORTFOLIO_COL_4,amount);
+        cv.put(PORTFOLIO_COL_5,value);
+        int result = db.update(PORTFOLIO_TABLE,cv,"USERNAME = ? & COIN_SYMBOL = ?", new String[] {username,coin_symbol});
+
+        if (result == -1){
+            return false;
+        }
+        else return true;
+    }
+
+    public boolean deleteWatchlist(String username, String coin_symbol){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        int result = db.delete(WATCHLIST_TABLE, "USERNAME = ? & COIN_SYMBOL = ?", new String[] {username,coin_symbol});
+
+        if (result == -1){
+            return false;
+        }
+        else return true;
+    }
+
 
 
 
