@@ -61,10 +61,10 @@ public class CoinsActivity extends AppCompatActivity {
 
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        setOnClickListener();
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(coinNames,coinSymbols,coinImages,this,listener);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        setOnClickListener();
     }
 
     private void setOnClickListener(){
