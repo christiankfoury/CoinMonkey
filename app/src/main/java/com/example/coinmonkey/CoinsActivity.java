@@ -78,7 +78,10 @@ public class CoinsActivity extends AppCompatActivity {
 
                 Intent i = new Intent(CoinsActivity.this,CoinDetailsActivity.class);
                 i.putExtra("symbol",coin_symbol);
-                User user = (User) intent.getSerializableExtra("user");
+                User user = null;
+                if(getIntent().getExtras() != null) {
+                    user = (User) getIntent().getSerializableExtra("user");
+                }
                 i.putExtra("username",user.getUsername());
                 startActivity(i);
             }
