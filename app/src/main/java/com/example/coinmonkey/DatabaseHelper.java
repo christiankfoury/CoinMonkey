@@ -146,6 +146,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
+    public Cursor getWatchlist(String username){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor res = db.rawQuery("SELECT * FROM " + WATCHLIST_TABLE + " WHERE USERNAME = " + username, null);
+
+        return res;
+    }
+
     public Cursor getPortfolio(String username){
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -154,6 +162,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
+    public boolean updatePassword(String username, String password){
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        ContentValues cv = new ContentValues();
+        cv.put(USER_COL_2,password);
+        db.update(USER_TABLE,cv,"USERNAME = ? ", new String[] {username});
+
+        return true;
+    }
+
+    public boolean updateBalance(String username, double balance){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put(USER_COL_3,balance);
+        db.update(USER_TABLE,cv,"USERNAME = ? ", new String[] {username});
+
+        return true;
+    }
 
 }
