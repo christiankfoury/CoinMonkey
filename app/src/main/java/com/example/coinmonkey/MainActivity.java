@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                        Intent i = new Intent(MainActivity.this,CoinsActivity.class);
                        i.putExtra("user",user);
                        startActivity(i);
+                       finish();
                    }
                }
             }

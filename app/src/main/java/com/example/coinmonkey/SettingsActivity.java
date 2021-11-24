@@ -60,6 +60,7 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(SettingsActivity.this,MainActivity.class);
                 startActivity(i);
+                finishAffinity();
             }
         });
 
