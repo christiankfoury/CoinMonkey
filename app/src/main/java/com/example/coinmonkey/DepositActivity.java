@@ -29,27 +29,37 @@ public class DepositActivity extends AppCompatActivity {
         depositLabel = findViewById(R.id.depositLabel);
 
         User user = (User) getIntent().getSerializableExtra("user");
-        depositLabel.setText("$" + user.getBalance());
+        updateBalance(user);
 
         depositButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try{
+                    // Saving user Deposit
                     double userDeposit = Double.parseDouble(input.getText().toString().trim());
+                    //Making db object
                     myDB = new DatabaseHelper(context);
+                    //getting the current Balance
                     double updatedBalance = user.getBalance();
+                    //Updating the balance
                     updatedBalance += userDeposit;
+                    //Updating the database balance
                     myDB.updateBalance(user.getUsername(),updatedBalance);
-                    Cursor cursor = myDB.getUser(user.getUsername());
-                    while(cursor.moveToNext()){
-                        user.setBalance(cursor.getDouble(4));
-                    }
-                    depositLabel.setText("$" + user.getBalance());
+                    updateBalance(user);
                     Toast.makeText(context,"$" + userDeposit + " has been deposited into your balance",Toast.LENGTH_SHORT).show();
                 }catch (Exception e){
                     Toast.makeText(context,"The Deposit Amount has to be in the following format -> (0.00)",Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
+
+    private void updateBalance(User user){
+        myDB = new DatabaseHelper(context);
+        Cursor cursor = myDB.getUser(user.getUsername());
+        while(cursor.moveToNext()){
+            user.setBalance(cursor.getDouble(4));
+        }
+        depositLabel.setText("$" + user.getBalance());
     }
 }
