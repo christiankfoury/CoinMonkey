@@ -38,17 +38,17 @@ public class CoinsActivity extends AppCompatActivity {
         coinNames.add("Bitcoin");
         coinNames.add("Ethereum");
         coinNames.add("Binance Coin");
-        coinNames.add("USD Tether");
+        coinNames.add("Tether");
         coinNames.add("Solana");
         coinNames.add("Cardano");
-        coinNames.add("Ripple XRP");
+        coinNames.add("Ripple");
         coinNames.add("Polkadot");
-        coinNames.add("USD Coin");
+        coinNames.add("USD-Coin");
         coinNames.add("Avalanche");
         coinNames.add("Dogecoin");
         coinNames.add("SHIBA INU");
         coinNames.add("Crypto.com Coin");
-        coinNames.add("Terra");
+        coinNames.add("Terra-Luna");
         coinNames.add("Litecoin");
 
         coinSymbols.add("BTC");
@@ -87,6 +87,7 @@ public class CoinsActivity extends AppCompatActivity {
 
                 Intent i = new Intent(CoinsActivity.this,CoinDetailsActivity.class);
                 i.putExtra("symbol",coin_symbol);
+                i.putExtra("coinName", coinNames.get(position));
                 User user = null;
                 if(getIntent().getExtras() != null) {
                     user = (User) getIntent().getSerializableExtra("user");

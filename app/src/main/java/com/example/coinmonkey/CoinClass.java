@@ -1,14 +1,14 @@
 package com.example.coinmonkey;
 
 public class CoinClass {
-    private int current_price;
+    private double current_price;
     private long market_cap;
-    private int low_24h;
-    private int high_24h;
+    private double low_24h;
+    private double high_24h;
     private double price_change_percentage_24h;
     private long total_volume;
 
-    public CoinClass(int current_price, long market_cap, int low_24h, int high_24h, double price_change_percentage_24h, long total_volume) {
+    public CoinClass(double current_price, long market_cap, double low_24h, double high_24h, double price_change_percentage_24h, long total_volume) {
         this.current_price = current_price;
         this.market_cap = market_cap;
         this.low_24h = low_24h;
@@ -17,11 +17,11 @@ public class CoinClass {
         this.total_volume = total_volume;
     }
 
-    public int getCurrent_price() {
+    public double getCurrent_price() {
         return current_price;
     }
 
-    public void setCurrent_price(int current_price) {
+    public void setCurrent_price(double current_price) {
         this.current_price = current_price;
     }
 
@@ -33,19 +33,19 @@ public class CoinClass {
         this.market_cap = market_cap;
     }
 
-    public int getLow_24h() {
+    public double getLow_24h() {
         return low_24h;
     }
 
-    public void setLow_24h(int low_24h) {
+    public void setLow_24h(double low_24h) {
         this.low_24h = low_24h;
     }
 
-    public int getHigh_24h() {
+    public double getHigh_24h() {
         return high_24h;
     }
 
-    public void setHigh_24h(int high_24h) {
+    public void setHigh_24h(double high_24h) {
         this.high_24h = high_24h;
     }
 
@@ -74,6 +74,28 @@ public class CoinClass {
                 ", high_24h=" + high_24h +
                 ", price_change_percentage_24h=" + price_change_percentage_24h +
                 ", total_volume=" + total_volume +
+                '}';
+    }
+}
+
+class CoinDescription {
+    public Description description;
+
+    public CoinDescription(Description description) {
+        this.description = description;
+    }
+    public Description getDescription() {
+        return description;
+    }
+
+    public void setDescription(Description description) {
+        this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "CoinDescription{" +
+                "description=" + description +
                 '}';
     }
 }
