@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CoinDetailsActivity">
+    tools:context=".CoinDetailsActivity"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="37dp">
 
     <ImageView
         android:id="@+id/imageView3"
@@ -291,38 +293,23 @@
         app:layout_constraintVertical_bias="0.853"
         android:fontFamily="@font/quicksand"/>
 
+
     <Button
         android:id="@+id/buy"
         android:layout_width="133dp"
         android:layout_height="49dp"
         android:backgroundTint="#4CAF50"
         android:fontFamily="@font/quicksand"
+        android:gravity="center"
         android:text="Buy"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="18dp"
         android:textStyle="bold"
+        app:cornerRadius="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.161"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.947" />
-
-    <Button
-        android:id="@+id/sell"
-        android:layout_width="133dp"
-        android:layout_height="49dp"
-        android:backgroundTint="#ff0000"
-        android:fontFamily="@font/quicksand"
-        android:text="Sell"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.845"
+        app:layout_constraintHorizontal_bias="0.841"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.947" />
@@ -350,5 +337,25 @@
             android:fontFamily="@font/quicksand"
             android:textFontWeight="900"/>
     </ScrollView>
+
+    <EditText
+        android:id="@+id/amountCoinDetails"
+        android:layout_width="183dp"
+        android:layout_height="49dp"
+        android:background="@drawable/textviewborder"
+        android:gravity="center"
+        android:hint="Amount"
+        android:textColorHint="#8FAF90"
+        android:textAlignment="center"
+        android:textColor="#4CAF50"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.144"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.947"
+        android:windowSoftInputMode="adjustResize"
+        android:inputType="numberDecimal"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -33,7 +33,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.715"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/menuButton" />
+        app:layout_constraintTop_toTopOf="@+id/menuButton"
+        android:shadowColor="@color/black"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="3"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/homeButton"
@@ -108,7 +112,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.742"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/homeButton" />
+        app:layout_constraintTop_toTopOf="@+id/homeButton"
+        android:shadowColor="@color/black"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="3"/>
 
     <TextView
         android:id="@+id/ordersTextView"
@@ -119,7 +127,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.737"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ordersButton" />
+        app:layout_constraintTop_toTopOf="@+id/ordersButton"
+        android:shadowColor="@color/black"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="3"/>
 
     <TextView
         android:id="@+id/portfolioTextView"
@@ -130,7 +142,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.731"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/portfolioButton" />
+        app:layout_constraintTop_toTopOf="@+id/portfolioButton"
+        android:shadowColor="@color/black"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="3"/>
 
     <TextView
         android:id="@+id/wishlistTextView"
@@ -141,7 +157,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.731"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/wishlistButton" />
+        app:layout_constraintTop_toTopOf="@+id/wishlistButton"
+        android:shadowColor="@color/black"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="3"/>
 
     <TextView
         android:id="@+id/settingsTextView"
@@ -152,5 +172,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.733"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/settingsButton" />
+        app:layout_constraintTop_toTopOf="@+id/settingsButton"
+        android:shadowColor="@color/black"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="3"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
