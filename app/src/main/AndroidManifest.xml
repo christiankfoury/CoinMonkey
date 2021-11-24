@@ -24,7 +24,7 @@
             android:name=".SettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".WishlistActivity"
+            android:name=".WatchlistActivity"
             android:exported="false" />
         <activity
             android:name=".PortfolioActivity"
