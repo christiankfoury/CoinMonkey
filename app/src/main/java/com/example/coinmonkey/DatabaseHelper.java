@@ -48,12 +48,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("CREATE TABLE " + USER_TABLE + " (USERNAME text primary key, FIRST_NAME text, LAST_NAME text, PASSWORD text, BALANCE decimal(15,2))");
-        sqLiteDatabase.execSQL("CREATE TABLE " + ORDERS_TABLE + " (ORDERS_ID integer primary key autoincrement, COIN_SYMBOL text, USERNAME text, TYPE text, AMOUNT decimal(15,2), VALUE decimal(15,2)," +
+        sqLiteDatabase.execSQL("CREATE TABLE " + USER_TABLE + " (USERNAME text primary key, FIRST_NAME text, LAST_NAME text, PASSWORD text, BALANCE DOUBLE)");
+        sqLiteDatabase.execSQL("CREATE TABLE " + ORDERS_TABLE + " (ORDERS_ID integer primary key autoincrement, COIN_SYMBOL text, USERNAME text, TYPE text, AMOUNT DOUBLE, VALUE DOUBLE," +
                 " FOREIGN KEY (USERNAME) REFERENCES user_table (username))");
         sqLiteDatabase.execSQL("CREATE TABLE " + WATCHLIST_TABLE + " (WATCHLIST_ID integer primary key autoincrement, COIN_SYMBOL text, USERNAME text, " +
                 " FOREIGN KEY (USERNAME) REFERENCES user_table (username))");
-        sqLiteDatabase.execSQL("CREATE TABLE " + PORTFOLIO_TABLE + " (PORTFOLIO_ID integer primary key autoincrement, COIN_SYMBOL text, USERNAME text, AMOUNT decimal(15,2), VALUE decimal(15,2), " +
+        sqLiteDatabase.execSQL("CREATE TABLE " + PORTFOLIO_TABLE + " (PORTFOLIO_ID integer primary key autoincrement, COIN_SYMBOL text, USERNAME text, AMOUNT DOUBLE, VALUE DOUBLE, " +
                 " FOREIGN KEY (USERNAME) REFERENCES user_table (username))");
     }
 
