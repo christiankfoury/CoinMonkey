@@ -2,12 +2,18 @@ package com.example.coinmonkey;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.NumberFormat;
 import java.util.List;
@@ -20,8 +26,16 @@ import retrofit2.Response;
 public class CoinDetailsActivity extends AppCompatActivity {
     ApiInterface apiInterface;
     TextView price, low, high, marketCap, hourChange, volume, description, coinNameDetails;
-    String priceText, lowText, highText, marketCapText, hourChangeText, volumeText, descriptionText;
-    ImageView coinImageDetails;
+    String priceText, lowText, highText, marketCapText, hourChangeText, volumeText, descriptionText, finalCoinName;
+    ImageView coinImageDetails, star;
+    DatabaseHelper myDB;
+    Context context = this;
+
+
+    double priceDouble;
+    EditText amount;
+    Button buy;
+
 
     private static final String TAG = "MainActivity";
 
@@ -35,6 +49,7 @@ public class CoinDetailsActivity extends AppCompatActivity {
 //        username = findViewById(R.id.username);
 //        symbol = findViewById(R.id.symbol);
 
+        // elements in android activity
         price = findViewById(R.id.price);
         low = findViewById(R.id.low);
         high = findViewById(R.id.high);
@@ -46,12 +61,28 @@ public class CoinDetailsActivity extends AppCompatActivity {
         coinNameDetails = findViewById(R.id.coinNameDetails);
         coinImageDetails = findViewById(R.id.coinImageDetails);
 
-        String username = intent.getStringExtra("username");
+
+        amount = findViewById(R.id.amountCoinDetails);
+        buy = findViewById(R.id.buy);
+
+        // intent
+        User user = (User) getIntent().getSerializableExtra("user");
         String coinName = intent.getStringExtra("coinName");
         String symbol = intent.getStringExtra("symbol");
+
+        // set text with proper format
+
+        star = findViewById(R.id.star);
+        checkWatchlist();
+
+        String username = intent.getStringExtra("username");
+        coinName = intent.getStringExtra("coinName");
+        symbol = intent.getStringExtra("symbol");
+
         coinNameDetails.setText(coinName);
+        // lowercase coin name for api call
         coinName = coinName.toLowerCase();
-        // coingecko named avalanche avalanche-2
+        // COINGECKO ON HOW THEY WRITE THE AMES OF CRYPTO *technicalities*
         if (coinName.equals("avalanche"))
             coinName = "avalanche-2";
         if (coinName.equals("binance coin"))
@@ -65,6 +96,7 @@ public class CoinDetailsActivity extends AppCompatActivity {
 
 
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        // API CALL FOR MARKET DATA
         Call<List<CoinClass>> call = apiInterface.getCoin("usd", coinName);
         System.out.println(call.request().url());
         call.enqueue(new Callback<List<CoinClass>>() {
@@ -79,8 +111,9 @@ public class CoinDetailsActivity extends AppCompatActivity {
                 hourChangeText = String.valueOf(coinList.get(0).getPrice_change_percentage_24h());
                 volumeText = String.valueOf(coinList.get(0).getTotal_volume());
 
+                priceDouble = coinList.get(0).getCurrent_price();
                 price.setText(NumberFormat.getCurrencyInstance(new Locale("en", "US"))
-                        .format(coinList.get(0).getCurrent_price()));
+                        .format(priceDouble));
                 low.setText(NumberFormat.getCurrencyInstance(new Locale("en", "US"))
                         .format(coinList.get(0).getLow_24h()));
                 high.setText(NumberFormat.getCurrencyInstance(new Locale("en", "US"))
@@ -105,6 +138,7 @@ public class CoinDetailsActivity extends AppCompatActivity {
             }
         });
 
+        // API CALL FOR DESCRIPTION
         Call<CoinDescription> call2 = apiInterface.getCoinDescription(coinName);
         System.out.println(call2.request().url());
         call2.enqueue(new Callback<CoinDescription>() {
@@ -118,13 +152,99 @@ public class CoinDetailsActivity extends AppCompatActivity {
                     descriptionText = "No description provided. Sorry!";
                 }
                 description.setText(descriptionText);
-
             }
-
             @Override
             public void onFailure(Call<CoinDescription> call, Throwable t) {
                 Log.e(TAG, "onFailure: " +  t.getLocalizedMessage());
             }
         });
+        String finalSymbol = symbol;
+        buy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (amount.equals("")) {
+                    Toast.makeText(getApplicationContext(), "Amount must not be empty!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                // in case user input an invalid number
+                try{
+                    // Saving user Deposit
+                    double amountInput = Double.parseDouble(amount.getText().toString().trim());
+                    //Making db object
+                    myDB = new DatabaseHelper(context);
+                    Cursor cursor = myDB.getUser(user.getUsername());
+                    cursor.moveToFirst();
+                    double balance = cursor.getDouble(4);
+
+                    if (balance < amountInput) {
+                        Toast.makeText(context,"Insufficient funds",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    // updating user balance
+                    myDB.updateBalance(user.getUsername(), balance - amountInput);
+
+                    // amount of coins bought
+                    double amountInCoin = amountInput / priceDouble;
+
+                    Cursor cursor1 = myDB.getPortfolioUsernameCoin(user.getUsername(), finalSymbol);
+                    if (cursor1.getCount() == 0) {
+                        myDB.insertPortfolio(finalSymbol, user.getUsername(), amountInCoin);
+                    } else {
+                        cursor1.moveToFirst();
+                        double currentAmount = cursor1.getDouble(3);
+                        double finalAmount = currentAmount + amountInCoin;
+                        myDB.updatePortfolio(user.getUsername(), finalSymbol, finalAmount);
+                    }
+                    myDB.insertOrder(finalSymbol, user.getUsername(), "buy", amountInCoin);
+                    Toast.makeText(getApplicationContext(), "You bought " + amountInCoin + " of this coin!", Toast.LENGTH_LONG).show();
+                    amount.setText("");
+//                    //getting the current Balance
+//                    double updatedBalance = user.getBalance();
+//                    //Updating the balance
+//                    updatedBalance += amountInput;
+//                    //Updating the database balance
+//                    myDB.updateBalance(user.getUsername(),updatedBalance);
+//                    updateBalance(user);
+//                    Toast.makeText(context,"$" + amountInput + " has been deposited into your balance",Toast.LENGTH_SHORT).show();
+                }catch (Exception e){
+                    Toast.makeText(getApplicationContext(),"The amount has to be in the following format -> (0.00)",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        finalCoinName = coinName;
+        String finalSymbol1 = symbol;
+        star.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myDB = new DatabaseHelper(context);
+                if(myDB.getWatchlist(getIntent().getStringExtra("username"),getIntent().getStringExtra("symbol")).getCount() <= 0){
+                    if(myDB.insertWatchlist(getIntent().getStringExtra("symbol"),getIntent().getStringExtra("username"), getIntent().getStringExtra("coinName"))){
+                        Toast.makeText(context, finalSymbol1 + " has been added to the watchlist",Toast.LENGTH_SHORT).show();
+                        checkWatchlist();
+                    }
+                    else{
+                        Toast.makeText(context, finalSymbol1 + " could not be added to the watchlist",Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else{
+                    myDB.deleteWatchlist(getIntent().getStringExtra("username"),getIntent().getStringExtra("symbol"));
+                    checkWatchlist();
+                    Toast.makeText(context, finalSymbol1 + " has been removed from your watchlist",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void checkWatchlist(){
+        star = findViewById(R.id.star);
+        myDB = new DatabaseHelper(context);
+        if(myDB.getWatchlist(getIntent().getStringExtra("username"),getIntent().getStringExtra("symbol")).getCount() > 0){
+            star.setImageResource(R.drawable.starfavorite);
+        }
+        else{
+            star.setImageResource(R.drawable.star);
+        }
     }
 }
