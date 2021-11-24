@@ -13,8 +13,6 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 public class CoinsActivity extends AppCompatActivity {
@@ -72,7 +70,7 @@ public class CoinsActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         setOnClickListener();
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(coinNames,coinSymbols,coinImages,this,listener);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(coinNames,coinSymbols,this,listener);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -186,7 +184,7 @@ public class CoinsActivity extends AppCompatActivity {
         wishlist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(CoinsActivity.this,WishlistActivity.class);
+                Intent i = new Intent(CoinsActivity.this, WatchlistActivity.class);
                 i.putExtra("user",getIntent().getSerializableExtra("user"));
                 startActivity(i);
             }

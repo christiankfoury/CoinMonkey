@@ -25,10 +25,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     LayoutInflater minflator;
     private RecyclerViewClickListener listener;
 
-    public RecyclerViewAdapter(ArrayList<String> coinNameList, ArrayList<String> coinSymbolList, ArrayList<String> coinImagesList, Context myContext, RecyclerViewClickListener listener) {
+    public RecyclerViewAdapter(ArrayList<String> coinNameList, ArrayList<String> coinSymbolList, Context myContext, RecyclerViewClickListener listener) {
         this.coinNameList = coinNameList;
         this.coinSymbolList = coinSymbolList;
-        this.coinImagesList = coinImagesList;
         this.myContext = myContext;
         this.listener = listener;
     }

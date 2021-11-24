@@ -33,6 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String WATCHLIST_COL_1 = "WATCHLIST_ID";
     public static final String WATCHLIST_COL_2 = "COIN_SYMBOL";
     public static final String WATCHLIST_COL_3 = "USERNAME";
+    public static final String WATCHLIST_COL_4 = "COIN_NAME";
 
     public static final String PORTFOLIO_COL_1 = "PORTFOLIO_ID";
     public static final String PORTFOLIO_COL_2 = "COIN_SYMBOL";
@@ -51,7 +52,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("CREATE TABLE " + USER_TABLE + " (USERNAME text primary key, FIRST_NAME text, LAST_NAME text, PASSWORD text, BALANCE DOUBLE)");
         sqLiteDatabase.execSQL("CREATE TABLE " + ORDERS_TABLE + " (ORDERS_ID integer primary key autoincrement, COIN_SYMBOL text, USERNAME text, TYPE text, AMOUNT DOUBLE, VALUE DOUBLE," +
                 " FOREIGN KEY (USERNAME) REFERENCES user_table (username))");
-        sqLiteDatabase.execSQL("CREATE TABLE " + WATCHLIST_TABLE + " (WATCHLIST_ID integer primary key autoincrement, COIN_SYMBOL text, USERNAME text, " +
+        sqLiteDatabase.execSQL("CREATE TABLE " + WATCHLIST_TABLE + " (WATCHLIST_ID integer primary key autoincrement, COIN_SYMBOL text, USERNAME text, COIN_NAME text, " +
                 " FOREIGN KEY (USERNAME) REFERENCES user_table (username))");
         sqLiteDatabase.execSQL("CREATE TABLE " + PORTFOLIO_TABLE + " (PORTFOLIO_ID integer primary key autoincrement, COIN_SYMBOL text, USERNAME text, AMOUNT DOUBLE, VALUE DOUBLE, " +
                 " FOREIGN KEY (USERNAME) REFERENCES user_table (username))");
@@ -102,14 +103,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else return true;
     }
 
-    public boolean insertWatchlist(String coin_symbol, String username){
+    public boolean insertWatchlist(String coin_symbol, String username,String coin_name){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues cv = new ContentValues();
         cv.put(WATCHLIST_COL_2,coin_symbol);
         cv.put(WATCHLIST_COL_3,username);
+        cv.put(WATCHLIST_COL_4,coin_name);
 
-        long result = db.insert(ORDERS_TABLE, null, cv);
+        long result = db.insert(WATCHLIST_TABLE, null, cv);
 
         if(result == -1){
             return false;
@@ -126,7 +128,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(PORTFOLIO_COL_4,amount);
         cv.put(PORTFOLIO_COL_5,value);
 
-        long result = db.insert(ORDERS_TABLE, null, cv);
+        long result = db.insert(PORTFOLIO_TABLE, null, cv);
 
         if(result == -1){
             return false;
@@ -153,7 +155,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getWatchlist(String username, String coin_symbol){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Cursor res = db.rawQuery("SELECT * FROM " + WATCHLIST_TABLE + " WHERE USERNAME = " + username + "AND COIN_SYMBOL = " + coin_symbol, null);
+        Cursor res = db.rawQuery("SELECT * FROM " + WATCHLIST_TABLE + " WHERE USERNAME = \"" + username + "\" AND COIN_SYMBOL = \"" + coin_symbol + "\"", null);
+
+        return res;
+    }
+
+    public Cursor getWatchlistByUsername(String username){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor res = db.rawQuery("SELECT * FROM " + WATCHLIST_TABLE + " WHERE USERNAME = \"" + username + "\"", null);
 
         return res;
     }

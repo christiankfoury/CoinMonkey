@@ -2,12 +2,15 @@ package com.example.coinmonkey;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.NumberFormat;
 import java.util.List;
@@ -20,8 +23,10 @@ import retrofit2.Response;
 public class CoinDetailsActivity extends AppCompatActivity {
     ApiInterface apiInterface;
     TextView price, low, high, marketCap, hourChange, volume, description, coinNameDetails;
-    String priceText, lowText, highText, marketCapText, hourChangeText, volumeText, descriptionText;
-    ImageView coinImageDetails;
+    String priceText, lowText, highText, marketCapText, hourChangeText, volumeText, descriptionText,finalCoinName,symbol;
+    ImageView coinImageDetails,star;
+    DatabaseHelper myDB;
+    Context context = this;
 
     private static final String TAG = "MainActivity";
 
@@ -46,9 +51,12 @@ public class CoinDetailsActivity extends AppCompatActivity {
         coinNameDetails = findViewById(R.id.coinNameDetails);
         coinImageDetails = findViewById(R.id.coinImageDetails);
 
+        star = findViewById(R.id.star);
+        checkWatchlist();
+
         String username = intent.getStringExtra("username");
         String coinName = intent.getStringExtra("coinName");
-        String symbol = intent.getStringExtra("symbol");
+        symbol = intent.getStringExtra("symbol");
         coinNameDetails.setText(coinName);
         coinName = coinName.toLowerCase();
         // coingecko named avalanche avalanche-2
@@ -126,5 +134,38 @@ public class CoinDetailsActivity extends AppCompatActivity {
                 Log.e(TAG, "onFailure: " +  t.getLocalizedMessage());
             }
         });
+
+        finalCoinName = coinName;
+        star.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myDB = new DatabaseHelper(context);
+                if(myDB.getWatchlist(getIntent().getStringExtra("username"),getIntent().getStringExtra("symbol")).getCount() <= 0){
+                    if(myDB.insertWatchlist(getIntent().getStringExtra("symbol"),getIntent().getStringExtra("username"), getIntent().getStringExtra("coinName"))){
+                        Toast.makeText(context,symbol + " has been added to the watchlist",Toast.LENGTH_SHORT).show();
+                        checkWatchlist();
+                    }
+                    else{
+                        Toast.makeText(context,symbol + " could not be added to the watchlist",Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else{
+                        myDB.deleteWatchlist(getIntent().getStringExtra("username"),getIntent().getStringExtra("symbol"));
+                        checkWatchlist();
+                        Toast.makeText(context,symbol + " has been removed from your watchlist",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void checkWatchlist(){
+        star = findViewById(R.id.star);
+        myDB = new DatabaseHelper(context);
+        if(myDB.getWatchlist(getIntent().getStringExtra("username"),getIntent().getStringExtra("symbol")).getCount() > 0){
+            star.setImageResource(R.drawable.starfavorite);
+        }
+        else{
+            star.setImageResource(R.drawable.star);
+        }
     }
 }

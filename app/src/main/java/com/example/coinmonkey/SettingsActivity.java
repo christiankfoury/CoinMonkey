@@ -155,7 +155,7 @@ public class SettingsActivity extends AppCompatActivity {
         wishlist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(SettingsActivity.this,WishlistActivity.class);
+                Intent i = new Intent(SettingsActivity.this, WatchlistActivity.class);
                 i.putExtra("user",getIntent().getSerializableExtra("user"));
                 startActivity(i);
             }
