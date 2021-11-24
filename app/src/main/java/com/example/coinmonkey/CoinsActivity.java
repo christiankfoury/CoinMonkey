@@ -8,7 +8,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -20,11 +25,15 @@ public class CoinsActivity extends AppCompatActivity {
     ArrayList<String> coinImages = new ArrayList<>();
     private RecyclerViewAdapter.RecyclerViewClickListener listener;
     Intent intent = getIntent();
+    FloatingActionButton menu,home,orders,portfolio,wishlist,settings;
+    TextView menuText,homeText,ordersText,portfolioText,wishlistText,settingsText;
+    boolean isFABVisible;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coins);
+        setFAB();
 
         coinNames.add("Bitcoin");
         coinNames.add("Ethereum");
@@ -86,5 +95,108 @@ public class CoinsActivity extends AppCompatActivity {
                 startActivity(i);
             }
         };
+    }
+
+    private void setFAB(){
+        menu = findViewById(R.id.menuButton);
+        home = findViewById(R.id.homeButton);
+        orders = findViewById(R.id.ordersButton);
+        portfolio = findViewById(R.id.portfolioButton);
+        wishlist = findViewById(R.id.wishlistButton);
+        settings = findViewById(R.id.settingsButton);
+
+        menuText = findViewById(R.id.menuTextView);
+        homeText = findViewById(R.id.homeTextView);
+        ordersText = findViewById(R.id.ordersTextView);
+        portfolioText = findViewById(R.id.portfolioTextView);
+        wishlistText = findViewById(R.id.wishlistTextView);
+        settingsText = findViewById(R.id.settingsTextView);
+
+        home.setVisibility(View.GONE);
+        orders.setVisibility(View.GONE);
+        portfolio.setVisibility(View.GONE);
+        wishlist.setVisibility(View.GONE);
+        settings.setVisibility(View.GONE);
+
+        menuText.setVisibility(View.GONE);
+        homeText.setVisibility(View.GONE);
+        ordersText.setVisibility(View.GONE);
+        portfolioText.setVisibility(View.GONE);
+        wishlistText.setVisibility(View.GONE);
+        settingsText.setVisibility(View.GONE);
+
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!isFABVisible){
+                    home.show();
+                    orders.show();
+                    portfolio.show();
+                    wishlist.show();
+                    settings.show();
+                    menuText.setVisibility(View.VISIBLE);
+                    homeText.setVisibility(View.VISIBLE);
+                    ordersText.setVisibility(View.VISIBLE);
+                    portfolioText.setVisibility(View.VISIBLE);
+                    wishlistText.setVisibility(View.VISIBLE);
+                    settingsText.setVisibility(View.VISIBLE);
+                    isFABVisible = true;
+                }
+                else{
+                    home.hide();
+                    orders.hide();
+                    portfolio.hide();
+                    wishlist.hide();
+                    settings.hide();
+                    menuText.setVisibility(View.GONE);
+                    homeText.setVisibility(View.GONE);
+                    ordersText.setVisibility(View.GONE);
+                    portfolioText.setVisibility(View.GONE);
+                    wishlistText.setVisibility(View.GONE);
+                    settingsText.setVisibility(View.GONE);
+                    isFABVisible = false;
+                }
+            }
+        });
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(CoinsActivity.this,CoinsActivity.class);
+                i.putExtra("user",getIntent().getSerializableExtra("user"));
+                startActivity(i);
+            }
+        });
+        orders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(CoinsActivity.this,OrdersActivity.class);
+                i.putExtra("user",getIntent().getSerializableExtra("user"));
+                startActivity(i);
+            }
+        });
+        portfolio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(CoinsActivity.this,PortfolioActivity.class);
+                i.putExtra("user",getIntent().getSerializableExtra("user"));
+                startActivity(i);
+            }
+        });
+        wishlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(CoinsActivity.this,WishlistActivity.class);
+                i.putExtra("user",getIntent().getSerializableExtra("user"));
+                startActivity(i);
+            }
+        });
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(CoinsActivity.this,SettingsActivity.class);
+                i.putExtra("user",getIntent().getSerializableExtra("user"));
+                startActivity(i);
+            }
+        });
     }
 }
