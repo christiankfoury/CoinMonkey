@@ -169,32 +169,35 @@ public class CoinDetailsActivity extends AppCompatActivity {
                 // in case user input an invalid number
                 try{
                     // Saving user Deposit
-                    double amountInput = Double.parseDouble(amount.getText().toString().trim());
+                    double amountInputCash = Double.parseDouble(amount.getText().toString().trim());
                     //Making db object
                     myDB = new DatabaseHelper(context);
                     Cursor cursor = myDB.getUser(user.getUsername());
                     cursor.moveToFirst();
                     double balance = cursor.getDouble(4);
 
-                    if (balance < amountInput) {
+                    if (balance < amountInputCash) {
                         Toast.makeText(context,"Insufficient funds",Toast.LENGTH_SHORT).show();
                         return;
                     }
 
                     // updating user balance
-                    myDB.updateBalance(user.getUsername(), balance - amountInput);
+                    myDB.updateBalance(user.getUsername(), balance - amountInputCash);
 
                     // amount of coins bought
-                    double amountInCoin = amountInput / priceDouble;
+                    double amountInCoin = amountInputCash / priceDouble;
 
                     Cursor cursor1 = myDB.getPortfolioUsernameCoin(user.getUsername(), finalSymbol);
                     if (cursor1.getCount() == 0) {
-                        myDB.insertPortfolio(finalSymbol, user.getUsername(), amountInCoin);
+                        myDB.insertPortfolio(finalSymbol, user.getUsername(), amountInCoin, amountInputCash);
                     } else {
                         cursor1.moveToFirst();
-                        double currentAmount = cursor1.getDouble(3);
-                        double finalAmount = currentAmount + amountInCoin;
-                        myDB.updatePortfolio(user.getUsername(), finalSymbol, finalAmount);
+                        double currentAmountCoin = cursor1.getDouble(3);
+                        double currentAmountInitial = cursor1.getDouble(4);
+
+                        double finalAmountCoin = currentAmountCoin + amountInCoin;
+                        double finalAmountInitial = currentAmountInitial + amountInputCash;
+                        myDB.updatePortfolio(user.getUsername(), finalSymbol, finalAmountCoin, finalAmountInitial);
                     }
                     myDB.insertOrder(finalSymbol, user.getUsername(), "buy", amountInCoin);
                     Toast.makeText(getApplicationContext(), "You bought " + amountInCoin + " of this coin!", Toast.LENGTH_LONG).show();

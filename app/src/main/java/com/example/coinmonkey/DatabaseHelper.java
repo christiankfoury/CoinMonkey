@@ -39,6 +39,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String PORTFOLIO_COL_2 = "COIN_SYMBOL";
     public static final String PORTFOLIO_COL_3 = "USERNAME";
     public static final String PORTFOLIO_COL_4 = "AMOUNT";
+    public static final String PORTFOLIO_COL_5 = "INITIAL_INVESTMENT";
 
 
 
@@ -54,7 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 " FOREIGN KEY (USERNAME) REFERENCES user_table (username))");
         sqLiteDatabase.execSQL("CREATE TABLE " + WATCHLIST_TABLE + " (WATCHLIST_ID integer primary key autoincrement, COIN_SYMBOL text, USERNAME text, COIN_NAME text, " +
                 " FOREIGN KEY (USERNAME) REFERENCES user_table (username))");
-        sqLiteDatabase.execSQL("CREATE TABLE " + PORTFOLIO_TABLE + " (PORTFOLIO_ID integer primary key autoincrement, COIN_SYMBOL text, USERNAME text, AMOUNT DOUBLE, " +
+        sqLiteDatabase.execSQL("CREATE TABLE " + PORTFOLIO_TABLE + " (PORTFOLIO_ID integer primary key autoincrement, COIN_SYMBOL text, USERNAME text, AMOUNT DOUBLE, INITIAL_INVESTMENT DOUBLE, " +
                 " FOREIGN KEY (USERNAME) REFERENCES user_table (username))");
     }
 
@@ -118,13 +119,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else return true;
     }
 
-    public boolean insertPortfolio(String coin_symbol, String username, double amount){
+    public boolean insertPortfolio(String coin_symbol, String username, double amount, double initial_investment){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues cv = new ContentValues();
         cv.put(PORTFOLIO_COL_2,coin_symbol);
         cv.put(PORTFOLIO_COL_3,username);
         cv.put(PORTFOLIO_COL_4,amount);
+        cv.put(PORTFOLIO_COL_5,initial_investment);
 
         long result = db.insert(PORTFOLIO_TABLE, null, cv);
 
@@ -197,11 +199,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else return true;
     }
 
-    public boolean updatePortfolio(String username, String coin_symbol, double amount){
+    public boolean updatePortfolio(String username, String coin_symbol, double amount, double initial_investment){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues cv = new ContentValues();
         cv.put(PORTFOLIO_COL_4,amount);
+        cv.put(PORTFOLIO_COL_5,initial_investment);
         int result = db.update(PORTFOLIO_TABLE,cv,"USERNAME = ? AND COIN_SYMBOL = ?", new String[] {username,coin_symbol});
 
         if (result == -1){
