@@ -1,20 +1,19 @@
 package com.example.coinmonkey;
 
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.firebase.database.collection.LLRBNode;
 
 import java.util.ArrayList;
 
@@ -63,6 +62,7 @@ public class RecyclerViewAdapterOrder extends RecyclerView.Adapter<RecyclerViewA
         } else {
             holder.relativeLayout.setBackgroundColor(Color.parseColor("#964B00"));
         }
+        holder.cardView.setAnimation(AnimationUtils.loadAnimation(holder.itemView.getContext(), R.anim.scale));
     }
 
     @Override
@@ -75,14 +75,17 @@ public class RecyclerViewAdapterOrder extends RecyclerView.Adapter<RecyclerViewA
         TextView symbol,type,amount;
         LinearLayout parent;
         RelativeLayout relativeLayout;
+        CardView cardView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             symbol = itemView.findViewById(R.id.coinSymbolOrder);
             type = itemView.findViewById(R.id.coinTypeOrder);
             amount = itemView.findViewById(R.id.coinAmountOrder);
-            parent = itemView.findViewById(R.id.parent_layout);
+            parent = itemView.findViewById(R.id.recyclerView2);
             relativeLayout = itemView.findViewById(R.id.relativeLayoutOrderRV);
+            cardView = itemView.findViewById(R.id.cardViewOrder);
+
         }
     }
 
