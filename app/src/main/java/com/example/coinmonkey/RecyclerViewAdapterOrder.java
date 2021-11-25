@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -56,6 +57,12 @@ public class RecyclerViewAdapterOrder extends RecyclerView.Adapter<RecyclerViewA
         }
         holder.type.setText(types.get(position));
         holder.amount.setText(amounts.get(position).toString());
+
+        if (position % 2 == 1) {
+            holder.relativeLayout.setBackgroundColor(Color.parseColor("#E6B99F"));
+        } else {
+            holder.relativeLayout.setBackgroundColor(Color.parseColor("#964B00"));
+        }
     }
 
     @Override
@@ -67,6 +74,7 @@ public class RecyclerViewAdapterOrder extends RecyclerView.Adapter<RecyclerViewA
 
         TextView symbol,type,amount;
         LinearLayout parent;
+        RelativeLayout relativeLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -74,6 +82,7 @@ public class RecyclerViewAdapterOrder extends RecyclerView.Adapter<RecyclerViewA
             type = itemView.findViewById(R.id.coinTypeOrder);
             amount = itemView.findViewById(R.id.coinAmountOrder);
             parent = itemView.findViewById(R.id.parent_layout);
+            relativeLayout = itemView.findViewById(R.id.relativeLayoutOrderRV);
         }
     }
 
