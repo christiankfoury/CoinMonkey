@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -19,11 +20,14 @@ public class WatchlistActivity extends AppCompatActivity {
     Context context = this;
     ArrayList<String> coinNames,coinSymbols;
     private RecyclerViewAdapter.RecyclerViewClickListener listener;
+    TextView noWatchlist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_watchlist);
+
+        noWatchlist = findViewById(R.id.noWatchlist);
 
         coinNames = new ArrayList<>();
         coinSymbols = new ArrayList<>();
@@ -42,8 +46,19 @@ public class WatchlistActivity extends AppCompatActivity {
             RecyclerViewAdapter adapter = new RecyclerViewAdapter(coinNames,coinSymbols,this,listener);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//            if (coinNames.size() != 0) {
+//                RecyclerViewAdapter adapter = new RecyclerViewAdapter(coinNames,coinSymbols,this,listener);
+//                setOnClickListener();
+//                recyclerView.setAdapter(adapter);
+//                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//                System.out.println(adapter.getItemCount());
+//                System.out.println("hello");
+//            } else {
+//                noWatchlist.setVisibility(View.VISIBLE);
+//            }
+        } else {
+                noWatchlist.setVisibility(View.VISIBLE);
         }
-
     }
 
     private void setOnClickListener(){
