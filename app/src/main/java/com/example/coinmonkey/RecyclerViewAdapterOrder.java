@@ -16,6 +16,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class RecyclerViewAdapterOrder extends RecyclerView.Adapter<RecyclerViewAdapterOrder.ViewHolder> {
 
@@ -54,7 +55,9 @@ public class RecyclerViewAdapterOrder extends RecyclerView.Adapter<RecyclerViewA
         else{
             holder.type.setTextColor(Color.parseColor("#ff0000"));
         }
-        holder.type.setText(types.get(position));
+        String type = types.get(position);
+        type = type.substring(0,1).toUpperCase() + type.substring(1, type.length());
+        holder.type.setText(type);
         holder.amount.setText(amounts.get(position).toString());
 
         if (position % 2 == 1) {
