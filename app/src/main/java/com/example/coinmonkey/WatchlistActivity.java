@@ -61,7 +61,7 @@ public class WatchlistActivity extends AppCompatActivity {
                 if(getIntent().getExtras() != null) {
                     user = (User) getIntent().getSerializableExtra("user");
                 }
-                i.putExtra("username",user.getUsername());
+                i.putExtra("user",user);
                 startActivity(i);
             }
         };

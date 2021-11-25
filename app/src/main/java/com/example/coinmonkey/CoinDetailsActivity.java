@@ -30,6 +30,7 @@ public class CoinDetailsActivity extends AppCompatActivity {
     ImageView coinImageDetails, star;
     DatabaseHelper myDB;
     Context context = this;
+    User user;
 
 
     double priceDouble;
@@ -66,7 +67,7 @@ public class CoinDetailsActivity extends AppCompatActivity {
         buy = findViewById(R.id.buy);
 
         // intent
-        User user = (User) getIntent().getSerializableExtra("user");
+        user = (User) getIntent().getSerializableExtra("user");
         String coinName = intent.getStringExtra("coinName");
         String symbol = intent.getStringExtra("symbol");
 
@@ -75,7 +76,6 @@ public class CoinDetailsActivity extends AppCompatActivity {
         star = findViewById(R.id.star);
         checkWatchlist();
 
-        String username = intent.getStringExtra("username");
         coinName = intent.getStringExtra("coinName");
         symbol = intent.getStringExtra("symbol");
 
@@ -218,20 +218,21 @@ public class CoinDetailsActivity extends AppCompatActivity {
         star.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                myDB = new DatabaseHelper(context);
-                if(myDB.getWatchlist(getIntent().getStringExtra("username"),getIntent().getStringExtra("symbol")).getCount() <= 0){
-                    if(myDB.insertWatchlist(getIntent().getStringExtra("symbol"),getIntent().getStringExtra("username"), getIntent().getStringExtra("coinName"))){
-                        Toast.makeText(context, finalSymbol1 + " has been added to the watchlist",Toast.LENGTH_SHORT).show();
+                String symbol = getIntent().getStringExtra("symbol");
+                myDB = new DatabaseHelper(getApplicationContext());
+                if(myDB.getWatchlist(user.getUsername(),symbol).getCount() <= 0){
+                    if(myDB.insertWatchlist(symbol,user.getUsername(), getIntent().getStringExtra("coinName"))){
+                        Toast.makeText(context, symbol + " has been added to the watchlist",Toast.LENGTH_SHORT).show();
                         checkWatchlist();
                     }
                     else{
-                        Toast.makeText(context, finalSymbol1 + " could not be added to the watchlist",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, symbol + " could not be added to the watchlist",Toast.LENGTH_SHORT).show();
                     }
                 }
                 else{
-                    myDB.deleteWatchlist(getIntent().getStringExtra("username"),getIntent().getStringExtra("symbol"));
+                    myDB.deleteWatchlist(user.getUsername(),symbol);
                     checkWatchlist();
-                    Toast.makeText(context, finalSymbol1 + " has been removed from your watchlist",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, symbol + " has been removed from your watchlist",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -239,8 +240,8 @@ public class CoinDetailsActivity extends AppCompatActivity {
 
     private void checkWatchlist(){
         star = findViewById(R.id.star);
-        myDB = new DatabaseHelper(context);
-        if(myDB.getWatchlist(getIntent().getStringExtra("username"),getIntent().getStringExtra("symbol")).getCount() > 0){
+        myDB = new DatabaseHelper(getApplicationContext());
+        if(myDB.getWatchlist(user.getUsername(),getIntent().getStringExtra("symbol")).getCount() > 0){
             star.setImageResource(R.drawable.starfavorite);
         }
         else{
