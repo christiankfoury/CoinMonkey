@@ -1,6 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:background="#E6B99F">
+
+        <TextView
+            android:id="@+id/coinSymbolOrderLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Symbol: "
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/coinSymbolOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/coinSymbolOrderLabel"
+            android:text="BTC"
+            android:textSize="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="12.5dp" />
+
+        <TextView
+            android:id="@+id/coinTypeOrderLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/coinSymbolOrderLabel"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Symbol: "
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/coinTypeOrder"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/coinSymbolOrderLabel"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="12.5dp"
+            android:layout_toRightOf="@+id/coinSymbolOrderLabel"
+            android:text="Buy"
+            android:textColor="#4CAF50"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/coinAmountOrderLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/coinTypeOrder"
+            android:text="Amount: "
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/coinAmountOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:layout_toRightOf="@id/coinAmountOrderLabel"
+                android:text="0.12345678"
+                android:textSize="15dp"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:layout_marginLeft="20dp"/>
+    </RelativeLayout>
+</LinearLayout>

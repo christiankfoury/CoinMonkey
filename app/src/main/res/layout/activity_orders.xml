@@ -1,59 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/parent_layout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:layout_marginTop="20dp"
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:background="#E6B99F">
-
-        <TextView
-            android:id="@+id/coinSymbolOrderLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Symbol: "
-            android:textSize="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
-            android:textStyle="bold"
-            />
-
-        <TextView
-            android:id="@+id/coinSymbolOrder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/coinSymbolOrderLabel"
-            android:text="BTC"
-            android:textSize="15dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="12.5dp" />
-
-        <TextView
-            android:id="@+id/coinTypeOrderLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Symbol: "
-            android:textSize="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
-            android:textStyle="bold"
-            android:layout_below="@+id/coinSymbolOrderLabel"
-            />
-
-        <TextView
-            android:id="@+id/coinTypeOrder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/coinSymbolOrderLabel"
-            android:text="BTC"
-            android:textSize="15dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="12.5dp"
-            android:layout_below="@id/coinSymbolOrder"/>
-    </RelativeLayout>
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerViewOrder"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
