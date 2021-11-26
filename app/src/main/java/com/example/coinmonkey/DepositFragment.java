@@ -74,7 +74,7 @@ public class DepositFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         depositButton = getActivity().findViewById(R.id.depositButton);
-        returnToSettings = getActivity().findViewById(R.id.returnButton);
+        returnToSettings = getActivity().findViewById(R.id.returnButtonDeposit);
         input = getActivity().findViewById(R.id.depositEditText);
         depositLabel = getActivity().findViewById(R.id.depositLabel);
 
@@ -104,6 +104,17 @@ public class DepositFragment extends Fragment {
             }
         });
 
+//        returnToSettings.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                SettingsActivity.fragmentManager.beginTransaction().replace(R.id.frameLayout, new SettingsFragment(), null).commit();
+//            }
+//        });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         returnToSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,7 +132,7 @@ public class DepositFragment extends Fragment {
     }
 
     public void updateBalance(User user){
-        DatabaseHelper myDB = new DatabaseHelper(context);
+        DatabaseHelper myDB = new DatabaseHelper(getActivity());
         Cursor cursor = myDB.getUser(user.getUsername());
         while(cursor.moveToNext()){
             user.setBalance(cursor.getDouble(4));

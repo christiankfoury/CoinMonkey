@@ -66,9 +66,54 @@ public class SettingsFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        deposit = getActivity().findViewById(R.id.depositButton);
-        withdraw = getActivity().findViewById(R.id.withdrawButton);
-        changePassword = getActivity().findViewById(R.id.changePasswordButton);
+        deposit = getActivity().findViewById(R.id.depositFragmentButton);
+        withdraw = getActivity().findViewById(R.id.withdrawFragmentButton);
+        changePassword = getActivity().findViewById(R.id.changeFragmentPasswordButton);
+        logout = getActivity().findViewById(R.id.logoutButton);
+
+        deposit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SettingsActivity.fragmentManager.beginTransaction().replace(R.id.frameLayout, new DepositFragment(), null).commit();
+//                i.putExtra("user",getActivity().getIntent().getSerializableExtra("user"));
+//                startActivity(i);
+            }
+        });
+
+        withdraw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(),WithdrawActivity.class);
+                i.putExtra("user",getActivity().getIntent().getSerializableExtra("user"));
+                startActivity(i);
+            }
+        });
+
+        changePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SettingsActivity.fragmentManager.beginTransaction().replace(R.id.frameLayout, new ChangePasswordFragment(), null).commit();
+//                i.putExtra("user",getActivity().getIntent().getSerializableExtra("user"));
+//                startActivity(i);
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(),MainActivity.class);
+                startActivity(i);
+                getActivity().finishAffinity();
+            }
+        });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        deposit = getActivity().findViewById(R.id.depositFragmentButton);
+        withdraw = getActivity().findViewById(R.id.withdrawFragmentButton);
+        changePassword = getActivity().findViewById(R.id.changeFragmentPasswordButton);
         logout = getActivity().findViewById(R.id.logoutButton);
 
         deposit.setOnClickListener(new View.OnClickListener() {
