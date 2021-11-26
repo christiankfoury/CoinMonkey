@@ -1,6 +1,8 @@
 package com.example.coinmonkey;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,56 +17,14 @@ public class SettingsActivity extends AppCompatActivity {
     FloatingActionButton menu,home,orders,portfolio,wishlist,settings;
     TextView menuText,homeText,ordersText,portfolioText,wishlistText,settingsText;
     boolean isFABVisible;
-    Button deposit,withdraw,changePassword,logout;
+    public static FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         setFAB();
-
-        deposit = findViewById(R.id.depositButton);
-        withdraw = findViewById(R.id.withdrawButton);
-        changePassword = findViewById(R.id.changePasswordButton);
-        logout = findViewById(R.id.logoutButton);
-
-        deposit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(SettingsActivity.this,DepositActivity.class);
-                i.putExtra("user",getIntent().getSerializableExtra("user"));
-                startActivity(i);
-            }
-        });
-
-        withdraw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(SettingsActivity.this,WithdrawActivity.class);
-                i.putExtra("user",getIntent().getSerializableExtra("user"));
-                startActivity(i);
-            }
-        });
-
-        changePassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(SettingsActivity.this,ChangePasswordActivity.class);
-                i.putExtra("user",getIntent().getSerializableExtra("user"));
-                startActivity(i);
-            }
-        });
-
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(SettingsActivity.this,MainActivity.class);
-                startActivity(i);
-                finishAffinity();
-            }
-        });
-
-
+        setFragment();
     }
 
     private void setFAB(){
@@ -168,5 +128,18 @@ public class SettingsActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+    public void setFragment(){
+        fragmentManager = getSupportFragmentManager();
+//        if (findViewById(R.id.frameLayout) != null) {
+//            if (savedInstanceState != null) {
+//                return;
+//            }
+//        }
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        SettingsFragment settingsFragment = new SettingsFragment();
+        fragmentTransaction.add(R.id.frameLayout, settingsFragment, null);
+        fragmentTransaction.commit();
     }
 }
