@@ -61,6 +61,48 @@ public class WatchlistActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        coinNames = new ArrayList<>();
+        coinSymbols = new ArrayList<>();
+
+        myDB = new DatabaseHelper(context);
+        User user = (User) getIntent().getSerializableExtra("user");
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(coinNames,coinSymbols,this,listener);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        if(myDB.getWatchlistByUsername(user.getUsername()).getCount() > 0) {
+            Cursor cursor = myDB.getWatchlistByUsername(user.getUsername());
+            while(cursor.moveToNext()){
+                coinSymbols.add(cursor.getString(1));
+                coinNames.add(cursor.getString(3));
+            }
+
+            recyclerView = findViewById(R.id.recyclerView);
+            setOnClickListener();
+            adapter = new RecyclerViewAdapter(coinNames,coinSymbols,this,listener);
+            recyclerView.setAdapter(adapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//            if (coinNames.size() != 0) {
+//                RecyclerViewAdapter adapter = new RecyclerViewAdapter(coinNames,coinSymbols,this,listener);
+//                setOnClickListener();
+//                recyclerView.setAdapter(adapter);
+//                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//                System.out.println(adapter.getItemCount());
+//                System.out.println("hello");
+//            } else {
+//                noWatchlist.setVisibility(View.VISIBLE);
+//            }
+        } else {
+            noWatchlist.setVisibility(View.VISIBLE);
+        }
+    }
+
     private void setOnClickListener(){
         listener = new RecyclerViewAdapter.RecyclerViewClickListener() {
             @Override
