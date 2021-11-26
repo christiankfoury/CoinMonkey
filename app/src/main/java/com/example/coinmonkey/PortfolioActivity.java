@@ -43,11 +43,16 @@ public class PortfolioActivity extends AppCompatActivity {
     ApiInterface apiInterface;
     private static final String TAG = "PortfolioActivity";
     private ProgressDialog progressDialog;
+    PieChart pieChart;
+    ArrayList<PieEntry> entries;
+    ArrayList<Integer> colors;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_portfolio);
+
+        pieChart = findViewById(R.id.pieChart);
 
 
         // hashmap for corresponding values of symbol to names,
@@ -69,59 +74,6 @@ public class PortfolioActivity extends AppCompatActivity {
         symbolToNames.put("luna", "terra-luna");
         symbolToNames.put("ltc", "litecoin");
 
-//        myDB = new DatabaseHelper(context);
-//        User user = (User) getIntent().getSerializableExtra("user");
-//
-//
-//        Cursor cursor = myDB.getPortfolio(user.getUsername());
-//        progressDialog = new ProgressDialog(PortfolioActivity.this);
-//        progressDialog.setMessage("please wait ...");
-//        progressDialog.setCancelable(false);
-//        progressDialog.show();
-//        for (int i = 0; i < cursor.getCount(); i++) {
-//            cursor.move(1);
-//            coin_symbols.add(cursor.getString(1));
-//            // NEED TO ADD INITIAL INVESTMENT IN RECYCLER VIEW
-////            amountsCash.add(cursor.getDouble(2));
-//            amountsCoin.add(cursor.getDouble(3));
-//
-//            apiInterface = ApiClient.getClient().create(ApiInterface.class);
-//            // API CALL FOR MARKET DATA
-//            Call<List<CoinClass>> call = apiInterface.getCoin("usd",
-//                    symbolToNames.get(cursor.getString(1).toLowerCase()));
-////            call.enqueue(new Callback<List<CoinClass>>() {
-////                @Override
-////                public void onResponse(Call<List<CoinClass>> call, Response<List<CoinClass>> response) {
-////                    List<CoinClass> coinList = response.body();
-////                    double price = coinList.get(0).getCurrent_price();
-////                    double currentInvestmentValue = cursor.getDouble(3) * price;
-////                    amountsCash.add(currentInvestmentValue);
-////                    changes.add(currentInvestmentValue / cursor.getDouble(4) * 100);
-////                }
-////
-////                @Override
-////                public void onFailure(Call<List<CoinClass>> call, Throwable t) {
-////                    Log.e(TAG, "onFailure: " +  t.getLocalizedMessage());
-////                }
-////            });
-//
-//            try {
-//                Response<List<CoinClass>> response = call.execute();
-//                List<CoinClass> coinList = response.body();
-//                double price = coinList.get(0).getCurrent_price();
-//                double currentInvestmentValue = cursor.getDouble(3) * price;
-//                amountsCash.add(currentInvestmentValue);
-//                changes.add(currentInvestmentValue / cursor.getDouble(4) * 100);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        if (progressDialog.isShowing())
-//            progressDialog.dismiss();
-//        recyclerViewAdapterPortfolio = findViewById(R.id.recyclerViewPortfolio);
-//        RecyclerViewAdapterPortfolio adapter = new RecyclerViewAdapterPortfolio(coin_symbols,amountsCash,amountsCoin,changes,this);
-//        recyclerViewAdapterPortfolio.setAdapter(adapter);
-//        recyclerViewAdapterPortfolio.setLayoutManager(new LinearLayoutManager(this));
         new GetContacts().execute();
     }
 
@@ -143,7 +95,6 @@ public class PortfolioActivity extends AppCompatActivity {
             myDB = new DatabaseHelper(context);
             User user = (User) getIntent().getSerializableExtra("user");
 
-
             Cursor cursor = myDB.getPortfolio(user.getUsername());
             for (int i = 0; i < cursor.getCount(); i++) {
                 cursor.move(1);
@@ -156,22 +107,6 @@ public class PortfolioActivity extends AppCompatActivity {
                 // API CALL FOR MARKET DATA
                 Call<List<CoinClass>> call = apiInterface.getCoin("usd",
                         symbolToNames.get(cursor.getString(1).toLowerCase()));
-//            call.enqueue(new Callback<List<CoinClass>>() {
-//                @Override
-//                public void onResponse(Call<List<CoinClass>> call, Response<List<CoinClass>> response) {
-//                    List<CoinClass> coinList = response.body();
-//                    double price = coinList.get(0).getCurrent_price();
-//                    double currentInvestmentValue = cursor.getDouble(3) * price;
-//                    amountsCash.add(currentInvestmentValue);
-//                    changes.add(currentInvestmentValue / cursor.getDouble(4) * 100);
-//                }
-//
-//                @Override
-//                public void onFailure(Call<List<CoinClass>> call, Throwable t) {
-//                    Log.e(TAG, "onFailure: " +  t.getLocalizedMessage());
-//                }
-//            });
-
                 try {
                     Response<List<CoinClass>> response = call.execute();
                     List<CoinClass> coinList = response.body();
@@ -196,6 +131,48 @@ public class PortfolioActivity extends AppCompatActivity {
             RecyclerViewAdapterPortfolio adapter = new RecyclerViewAdapterPortfolio(coin_symbols, amountsCash, amountsCoin, changes, getApplicationContext());
             recyclerViewAdapterPortfolio.setAdapter(adapter);
             recyclerViewAdapterPortfolio.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+            setupPieChart();
+            loadPieChartData();
         }
+
+        private void setupPieChart(){
+            pieChart.setDrawHoleEnabled(false);
+            pieChart.setUsePercentValues(true);
+            pieChart.setEntryLabelTextSize(12f);
+            pieChart.setEntryLabelColor(Color.BLACK);
+            pieChart.getDescription().setEnabled(false);
+            pieChart.animateY(1400, Easing.EaseInOutQuad);
+        }
+
+        private void loadPieChartData(){
+            colors = new ArrayList<>();
+
+            for(int color: ColorTemplate.MATERIAL_COLORS){
+                colors.add(color);
+            }
+
+            for(int color: ColorTemplate.VORDIPLOM_COLORS){
+                colors.add(color);
+            }
+
+            ArrayList<PieEntry> entries = new ArrayList<>();
+
+            for(int i = 0; i < coin_symbols.size(); i++){
+                entries.add(new PieEntry(amountsCash.get(i).floatValue(),coin_symbols.get(i).toString()));
+            }
+
+            PieDataSet dataSet = new PieDataSet(entries, "Portfolio");
+            dataSet.setColors(colors);
+
+            PieData data = new PieData(dataSet);
+            data.setDrawValues(true);
+            data.setValueFormatter(new PercentFormatter(pieChart));
+            data.setValueTextColor(Color.BLACK);
+            data.setValueTextSize(12f);
+
+            pieChart.setData(data);
+        }
+
     }
 }
