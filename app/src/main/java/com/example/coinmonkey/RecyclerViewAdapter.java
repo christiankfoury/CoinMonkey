@@ -1,12 +1,14 @@
 package com.example.coinmonkey;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -44,6 +46,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.name.setText(coinNameList.get(position));
         holder.symbol.setText(coinSymbolList.get(position));
         holder.image.setImageResource(myContext.getResources().getIdentifier(coinSymbolList.get(position).toLowerCase(), "drawable", myContext.getPackageName()));
+//        if (position % 2 == 1) {
+//            holder.relativeLayout.setBackgroundColor(Color.parseColor("#E6B99F"));
+//        } else {
+//            holder.relativeLayout.setBackgroundColor(Color.parseColor("#964B00"));
+//        }
 //        getApplicationContext().getResources().getDrawable(getApplicationContext().getResources().getIdentifier(coinSymbols, "drawable", getApplicationContext().getPackageName()));
     }
 
@@ -56,6 +63,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView name,symbol;
         ImageView image;
         LinearLayout parent;
+        RelativeLayout relativeLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -63,6 +71,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             symbol = itemView.findViewById(R.id.coinSymbol);
             image = itemView.findViewById(R.id.coinImage);
             parent = itemView.findViewById(R.id.parent_layout);
+            relativeLayout = itemView.findViewById(R.id.relativeLayoutCoinsRV);
             itemView.setOnClickListener(this);
         }
 

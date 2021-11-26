@@ -84,7 +84,7 @@ public class PortfolioActivity extends AppCompatActivity {
             super.onPreExecute();
 
             progressDialog = new ProgressDialog(PortfolioActivity.this);
-            progressDialog.setMessage("please wait ...");
+            progressDialog.setMessage("Prepare to see your gains ... hopefully");
             progressDialog.setCancelable(false);
             progressDialog.show();
 

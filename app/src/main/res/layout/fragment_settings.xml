@@ -14,18 +14,24 @@
                     android:id="@+id/depositFragmentButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/quicksand"
                     android:text="Deposit"/>
 
                 <Button
                     android:id="@+id/withdrawFragmentButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/quicksand"
                     android:text="Withdraw" />
 
                 <Button
                     android:id="@+id/changeFragmentPasswordButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/quicksand"
                     android:text="Change Password" />
 
                 <Button
@@ -34,6 +40,7 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="#FF0000"
                     android:fontFamily="@font/quicksand"
+                    android:textStyle="bold"
                     android:text="Logout"
                     android:textColor="@color/white" />
         </LinearLayout>

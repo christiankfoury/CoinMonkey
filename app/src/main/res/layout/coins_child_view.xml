@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:elevation="8dp"
+    app:cardCornerRadius="8dp">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,9 +16,10 @@
     android:layout_height="wrap_content">
 
     <RelativeLayout
-        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="100dp"
+        android:id="@+id/relativeLayoutCoinsRV"
+        android:paddingTop="20dp">
 
         <ImageView
             android:id="@+id/coinImage"
@@ -24,15 +34,21 @@
             android:id="@+id/coinName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="Name" />
+            android:layout_marginLeft="175dp"
+            android:fontFamily="@font/quicksand"
+            android:text="Name"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/coinSymbolLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/coinName"
-            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="175dp"
+            android:fontFamily="@font/quicksand"
+            android:textStyle="bold"
+            android:textSize="20dp"
             android:text="Symbol: " />
 
         <TextView
@@ -40,9 +56,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/coinName"
+            android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/coinSymbolLabel"
+            android:fontFamily="@font/quicksand"
             android:text="ABC"
-            android:layout_marginLeft="10dp"/>
+            android:textSize="20dp" />
 
     </RelativeLayout>
 </LinearLayout>
+</androidx.cardview.widget.CardView>

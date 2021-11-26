@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -24,8 +25,9 @@ public class CoinsActivity extends AppCompatActivity {
     private RecyclerViewAdapter.RecyclerViewClickListener listener;
     Intent intent = getIntent();
     FloatingActionButton menu,home,orders,portfolio,wishlist,settings;
-    TextView menuText,homeText,ordersText,portfolioText,wishlistText,settingsText;
+    TextView menuText,homeText,ordersText,portfolioText,wishlistText,settingsText,liquidCash;
     boolean isFABVisible;
+    DatabaseHelper myDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,17 @@ public class CoinsActivity extends AppCompatActivity {
         coinSymbols.add("LTC");
 
 //        getApplicationContext().getResources().getDrawable(getApplicationContext().getResources().getIdentifier(coinSymbols, "drawable", getApplicationContext().getPackageName()));
+        liquidCash = findViewById(R.id.liquidCash);
+        User user = null;
+        if(getIntent().getExtras() != null) {
+            user = (User) getIntent().getSerializableExtra("user");
+        }
+
+        myDB = new DatabaseHelper(getApplicationContext());
+        Cursor cursor = myDB.getUser(user.getUsername());
+        cursor.moveToFirst();
+        liquidCash.setText("Liquid Cash: $" + cursor.getDouble(4));
+
 
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
@@ -197,5 +210,19 @@ public class CoinsActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        User user = null;
+        if(getIntent().getExtras() != null) {
+            user = (User) getIntent().getSerializableExtra("user");
+        }
+
+        myDB = new DatabaseHelper(getApplicationContext());
+        Cursor cursor = myDB.getUser(user.getUsername());
+        cursor.moveToFirst();
+        liquidCash.setText("Liquid Cash: $" + cursor.getDouble(4));
     }
 }

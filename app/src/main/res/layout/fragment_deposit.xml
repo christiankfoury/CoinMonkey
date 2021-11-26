@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".DepositFragment">
 
     
@@ -16,39 +17,60 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Deposit"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:fontFamily="@font/quicksand"
+            android:textStyle="bold"/>
 
         <TextView
+            android:backgroundTint="#4CAF50"
+            android:padding="10dp"
             android:id="@+id/depositLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="$0.00"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/quicksand"
+            android:textStyle="bold" />
 
         <EditText
+            android:background="@drawable/settingsedittext"
+            android:padding="10dp"
             android:id="@+id/depositEditText"
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
+            android:layout_gravity="center"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:hint="money"
+            android:hint="Deposit Money Here!"
             android:inputType="numberDecimal"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/quicksand"
+            android:textStyle="bold"/>
 
         <Button
             android:id="@+id/depositButton"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
+            android:layout_gravity="center"
             android:layout_height="wrap_content"
             android:text="Deposit"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/quicksand"
+            android:textStyle="bold"
+            android:backgroundTint="#FFFDD0"
+            android:letterSpacing="0.15"/>
 
         <Button
             android:id="@+id/returnButtonDeposit"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Return to settings"
             android:layout_marginTop="20dp"
-            android:backgroundTint="#FF0000"/>
+            android:fontFamily="@font/quicksand"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="150dp"
+            android:textColor="@color/white"
+            android:backgroundTint="#AFAFAF"
+            app:cornerRadius="40dp"/>
 
     </LinearLayout>
 
