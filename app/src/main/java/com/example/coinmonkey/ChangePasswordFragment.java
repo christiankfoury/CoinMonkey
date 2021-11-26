@@ -1,12 +1,17 @@
 package com.example.coinmonkey;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +19,10 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class ChangePasswordFragment extends Fragment {
+
+    EditText currentPassword,newPassword,newPasswordConfirm;
+    Button changePassword, returnButtonChangePassword;
+    DatabaseHelper myDB;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -53,6 +62,44 @@ public class ChangePasswordFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        currentPassword = getActivity().findViewById(R.id.currentPasswordEditText);
+        newPassword = getActivity().findViewById(R.id.newPasswordEditText);
+        newPasswordConfirm = getActivity().findViewById(R.id.newPasswordConfirmEditText);
+        changePassword = getActivity().findViewById(R.id.changePasswordButton);
+        returnButtonChangePassword = getActivity().findViewById(R.id.returnButtonChangePassword);
+
+
+        changePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                User user = (User) getActivity().getIntent().getSerializableExtra("user");
+
+                if(!user.getPassword().equals(currentPassword.getText().toString())){
+                    Toast.makeText(getActivity(),"The current password input is not correct",Toast.LENGTH_SHORT).show();
+                }
+                else if(!newPassword.getText().toString().equals(newPasswordConfirm.getText().toString())){
+                    Toast.makeText(getActivity(),"The new password and password confirmation are not identical",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    myDB = new DatabaseHelper(getActivity());
+                    myDB.updatePassword(user.getUsername(),newPassword.getText().toString());
+                    Toast.makeText(getActivity(),"Your Password has been updated",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        returnButtonChangePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SettingsActivity.fragmentManager.beginTransaction().replace(R.id.frameLayout, new SettingsFragment(), null).commit();
+            }
+        });
     }
 
     @Override

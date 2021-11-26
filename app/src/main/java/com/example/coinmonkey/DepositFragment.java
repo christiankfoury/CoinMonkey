@@ -27,7 +27,6 @@ public class DepositFragment extends Fragment {
     Button depositButton,returnToSettings;
     EditText input;
     TextView depositLabel;
-    Context context = getActivity();
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -85,11 +84,11 @@ public class DepositFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 try{
-                    DatabaseHelper myDB = new DatabaseHelper(context);
+                    DatabaseHelper myDB = new DatabaseHelper(getActivity());
                     // Saving user Deposit
                     double userDeposit = Double.parseDouble(input.getText().toString().trim());
                     //Making db object
-                    myDB = new DatabaseHelper(context);
+                    myDB = new DatabaseHelper(getActivity());
                     //getting the current Balance
                     double updatedBalance = user.getBalance();
                     //Updating the balance
@@ -97,9 +96,9 @@ public class DepositFragment extends Fragment {
                     //Updating the database balance
                     myDB.updateBalance(user.getUsername(),updatedBalance);
                     updateBalance(user);
-                    Toast.makeText(context,"$" + userDeposit + " has been deposited into your balance",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"$" + userDeposit + " has been deposited into your balance",Toast.LENGTH_SHORT).show();
                 }catch (Exception e){
-                    Toast.makeText(context,"The Deposit Amount has to be in the following format -> (0.00)",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"The Deposit Amount has to be in the following format -> (0.00)",Toast.LENGTH_SHORT).show();
                 }
             }
         });
