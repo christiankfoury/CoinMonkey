@@ -48,6 +48,7 @@ public class PortfolioActivity extends AppCompatActivity {
     ArrayList<PieEntry> entries;
     ArrayList<Integer> colors;
     TextView totalPortfolioValue;
+    Double liquidCash = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,6 @@ public class PortfolioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_portfolio);
 
         pieChart = findViewById(R.id.pieChart);
-        totalPortfolioValue = findViewById(R.id.totalPortfolioValue);
 
 
         // hashmap for corresponding values of symbol to names,
@@ -139,17 +139,17 @@ public class PortfolioActivity extends AppCompatActivity {
             loadPieChartData();
         }
 
-        private void setupPieChart(){
-            pieChart.setDrawHoleEnabled(false);
-            pieChart.setUsePercentValues(true);
-            pieChart.setEntryLabelTextSize(12f);
-            pieChart.setEntryLabelColor(Color.BLACK);
-            pieChart.getDescription().setEnabled(false);
-            pieChart.animateY(1400, Easing.EaseInOutQuad);
-        }
-
         private void loadPieChartData(){
             colors = new ArrayList<>();
+            myDB = new DatabaseHelper(getApplicationContext());
+
+            User user = (User) getIntent().getSerializableExtra("user");
+
+            Cursor cursor = myDB.getUser(user.getUsername());
+
+            cursor.moveToFirst();
+            liquidCash = cursor.getDouble(4);
+
 
             for(int color: ColorTemplate.MATERIAL_COLORS){
                 colors.add(color);
@@ -160,6 +160,8 @@ public class PortfolioActivity extends AppCompatActivity {
             }
 
             ArrayList<PieEntry> entries = new ArrayList<>();
+
+            entries.add(new PieEntry(liquidCash.floatValue(),"Cash"));
 
             for(int i = 0; i < coin_symbols.size(); i++){
                 entries.add(new PieEntry(amountsCash.get(i).floatValue(),coin_symbols.get(i).toString()));
@@ -175,6 +177,29 @@ public class PortfolioActivity extends AppCompatActivity {
             data.setValueTextSize(12f);
 
             pieChart.setData(data);
+        }
+
+        private void setupPieChart(){
+            double totalCash = 0;
+            User user = (User) getIntent().getSerializableExtra("user");
+            myDB = new DatabaseHelper(getApplicationContext());
+            Cursor cursor = myDB.getUser(user.getUsername());
+
+            cursor.moveToFirst();
+            liquidCash = cursor.getDouble(4);
+
+            for(int i = 0; i < amountsCash.size(); i++){
+                totalCash += amountsCash.get(i);
+            }
+            totalCash += liquidCash;
+            pieChart.setDrawHoleEnabled(true);
+            pieChart.setUsePercentValues(true);
+            pieChart.setEntryLabelTextSize(12f);
+            pieChart.setEntryLabelColor(Color.BLACK);
+            pieChart.setCenterText(String.format("Total Portfolio Value $ %.2f", totalCash));
+            pieChart.setCenterTextSize(12);
+            pieChart.getDescription().setEnabled(false);
+            pieChart.animateY(1400, Easing.EaseInOutQuad);
         }
 
     }
