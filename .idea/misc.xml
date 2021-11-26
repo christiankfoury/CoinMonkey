@@ -23,10 +23,12 @@
         <entry key="..\:/Users/Christian/AndroidStudioProjects/CoinMonkey/app/src/main/res/layout/activity_deposit.xml" value="0.3645833333333333" />
         <entry key="..\:/Users/Christian/AndroidStudioProjects/CoinMonkey/app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="..\:/Users/Christian/AndroidStudioProjects/CoinMonkey/app/src/main/res/layout/activity_orders.xml" value="0.5" />
+        <entry key="..\:/Users/Christian/AndroidStudioProjects/CoinMonkey/app/src/main/res/layout/activity_portfolio.xml" value="0.565625" />
         <entry key="..\:/Users/Christian/AndroidStudioProjects/CoinMonkey/app/src/main/res/layout/activity_watchlist.xml" value="0.565625" />
         <entry key="..\:/Users/Christian/AndroidStudioProjects/CoinMonkey/app/src/main/res/layout/activity_withdraw.xml" value="0.565625" />
         <entry key="..\:/Users/Christian/AndroidStudioProjects/CoinMonkey/app/src/main/res/layout/coins_child_view.xml" value="0.5" />
         <entry key="..\:/Users/Christian/AndroidStudioProjects/CoinMonkey/app/src/main/res/layout/orders_child_view.xml" value="0.5" />
+        <entry key="..\:/Users/Christian/AndroidStudioProjects/CoinMonkey/app/src/main/res/layout/portfolio_child_view.xml" value="0.5" />
         <entry key="..\:/Users/Christian/AndroidStudioProjects/CoinMonkey/app/src/main/res/layout/watchlist_child_view.xml" value="0.565625" />
       </map>
     </option>

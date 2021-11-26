@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardViewPortfolio"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardCornerRadius="4dp"
+    layout_height="">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recyclerView3">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:background="#E6B99F"
+            android:id="@+id/relativeLayoutPortfolioRV">
+
+            <TextView
+                android:id="@+id/coinSymbolPortfolioLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Symbol: "
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/coinSymbolPortfolio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/coinSymbolPortfolioLabel"
+                android:text="BTC"
+                android:textSize="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="12.5dp" />
+
+            <TextView
+                android:id="@+id/coinChangePortfolioLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/coinSymbolPortfolioLabel"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Change: "
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/coinChangePortfolio"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/coinSymbolPortfolioLabel"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="12.5dp"
+                android:layout_toRightOf="@+id/coinSymbolPortfolioLabel"
+                android:textSize="15dp"
+                android:text="+5%"
+                android:textColor="#4CAF50"/>
+
+            <TextView
+                android:id="@+id/coinAmountPortfolioLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/coinChangePortfolio"
+                android:text="Amount: "
+                android:textSize="20dp"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/coinAmountPortfolio"
+                android:layout_width="120dp"
+                android:layout_height="27dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/coinAmountPortfolioLabel"
+                android:autoSizeMinTextSize="2dp"
+                android:autoSizeTextType="uniform"
+                android:gravity="center|left"
+                android:text="0.12345678"
+                android:textSize="15dp"
+                card_view:autoSizeStepGranularity="2sp" />
+
+            <TextView
+                android:id="@+id/coinCurrentCashPortfolioLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/coinChangePortfolio"
+                android:layout_below="@+id/coinSymbolPortfolioLabel"
+                android:text="Amount ($): "
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/coinCurrentCashPortfolio"
+                android:layout_width="120dp"
+                android:layout_height="27dp"
+                android:layout_below="@+id/coinSymbolPortfolioLabel"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/coinAmountPortfolioLabel"
+                android:autoSizeMinTextSize="2dp"
+                android:autoSizeTextType="uniform"
+                android:gravity="center|left"
+                android:textSize="15dp"
+                card_view:autoSizeStepGranularity="2sp"
+                android:text="$ 120"/>
+        </RelativeLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
