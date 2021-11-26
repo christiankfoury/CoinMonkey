@@ -171,7 +171,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getPortfolio(String username){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Cursor res = db.rawQuery("SELECT * FROM " + PORTFOLIO_TABLE + " WHERE USERNAME = " + username, null);
+        Cursor res = db.rawQuery("SELECT * FROM " + PORTFOLIO_TABLE + " WHERE USERNAME = \"" + username + "\"", null);
 
         return res;
     }

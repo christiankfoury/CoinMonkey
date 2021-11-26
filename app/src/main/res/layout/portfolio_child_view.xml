@@ -16,9 +16,10 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="85dp"
+            android:layout_height="120dp"
             android:background="#E6B99F"
-            android:id="@+id/relativeLayoutPortfolioRV">
+            android:id="@+id/relativeLayoutPortfolioRV"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/coinSymbolPortfolioLabel"
@@ -53,15 +54,15 @@
 
             <TextView
                 android:id="@+id/coinChangePortfolio"
-                android:layout_width="30dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/coinSymbolPortfolioLabel"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="12.5dp"
                 android:layout_toRightOf="@+id/coinSymbolPortfolioLabel"
-                android:textSize="15dp"
-                android:text="+5%"
-                android:textColor="#4CAF50"/>
+                android:text="+5.54%"
+                android:textColor="#4CAF50"
+                android:textSize="15dp" />
 
             <TextView
                 android:id="@+id/coinAmountPortfolioLabel"
@@ -78,8 +79,8 @@
                 android:id="@+id/coinAmountPortfolio"
                 android:layout_width="120dp"
                 android:layout_height="27dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_toRightOf="@id/coinAmountPortfolioLabel"
                 android:autoSizeMinTextSize="2dp"
                 android:autoSizeTextType="uniform"
