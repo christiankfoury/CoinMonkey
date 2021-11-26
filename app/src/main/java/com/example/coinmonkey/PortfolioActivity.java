@@ -12,6 +12,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.graphics.Color;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,6 +47,7 @@ public class PortfolioActivity extends AppCompatActivity {
     PieChart pieChart;
     ArrayList<PieEntry> entries;
     ArrayList<Integer> colors;
+    TextView totalPortfolioValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,7 @@ public class PortfolioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_portfolio);
 
         pieChart = findViewById(R.id.pieChart);
+        totalPortfolioValue = findViewById(R.id.totalPortfolioValue);
 
 
         // hashmap for corresponding values of symbol to names,
