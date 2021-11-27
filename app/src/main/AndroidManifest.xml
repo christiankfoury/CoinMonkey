@@ -21,6 +21,9 @@
             android:name=".ForumActivity"
             android:exported="false" />
         <activity
+            android:name=".SellActivity"
+            android:exported="false" />
+        <activity
             android:name=".ChangePasswordActivity"
             android:exported="false" />
         <activity

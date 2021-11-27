@@ -20,14 +20,15 @@ public class RecyclerViewAdapterPost extends RecyclerView.Adapter<RecyclerViewAd
     Context myContext;
     LayoutInflater minflator;
     DatabaseHelper myDB;
-    private RecyclerViewAdapterPost.RecyclerViewClickListener listener;
+    private RecyclerViewAdapterPost.RecyclerViewClickListenerPost listener;
 
-    public RecyclerViewAdapterPost(ArrayList<String> usernames, ArrayList<String> messages, ArrayList<String> timestamps, Context myContext, RecyclerViewAdapterPost.RecyclerViewClickListener listener) {
+    public RecyclerViewAdapterPost(ArrayList<String> usernames, ArrayList<String> messages, ArrayList<String> timestamps, Context myContext, RecyclerViewAdapterPost.RecyclerViewClickListenerPost listener) {
         this.usernames = usernames;
         this.messages = messages;
         this.timestamps = timestamps;
         this.myContext = myContext;
         this.listener = listener;
+
     }
 
     @NonNull
@@ -59,6 +60,7 @@ public class RecyclerViewAdapterPost extends RecyclerView.Adapter<RecyclerViewAd
             message = itemView.findViewById(R.id.postMessage);
             timestamp = itemView.findViewById(R.id.postTimestamp);
             linearLayout = itemView.findViewById(R.id.parent_layout);
+            itemView.setOnClickListener(this);
         }
 
         @Override
@@ -67,7 +69,7 @@ public class RecyclerViewAdapterPost extends RecyclerView.Adapter<RecyclerViewAd
         }
     }
 
-    public interface RecyclerViewClickListener{
+    public interface RecyclerViewClickListenerPost{
         void onClick(View view, int position);
     }
 }

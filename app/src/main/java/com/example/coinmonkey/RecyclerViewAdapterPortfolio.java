@@ -21,14 +21,17 @@ public class RecyclerViewAdapterPortfolio  extends RecyclerView.Adapter<Recycler
     ArrayList<Double> amountsCash, amountsCoin, changes;
     Context myContext;
     LayoutInflater minflator;
+    private RecyclerViewClickListenerPortfolio listener;
 
     public RecyclerViewAdapterPortfolio(ArrayList<String> coin_symbols, ArrayList<Double> amountsCash,
-                                        ArrayList<Double> amountsCoin, ArrayList<Double> changes, Context myContext) {
+                                        ArrayList<Double> amountsCoin, ArrayList<Double> changes, Context myContext,
+                                        RecyclerViewClickListenerPortfolio listener) {
         this.coin_symbols = coin_symbols;
         this.amountsCash = amountsCash;
         this.amountsCoin = amountsCoin;
         this.changes = changes;
         this.myContext = myContext;
+        this.listener = listener;
     }
 
     @NonNull
@@ -65,7 +68,7 @@ public class RecyclerViewAdapterPortfolio  extends RecyclerView.Adapter<Recycler
         return coin_symbols.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView coin_symbol, amountCash,amountCoin, change;
         LinearLayout parent;
@@ -81,7 +84,16 @@ public class RecyclerViewAdapterPortfolio  extends RecyclerView.Adapter<Recycler
             parent = itemView.findViewById(R.id.recyclerView3);
             relativeLayout = itemView.findViewById(R.id.relativeLayoutPortfolioRV);
             cardView = itemView.findViewById(R.id.cardViewPortfolio);
-
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            listener.onClick(view,getAdapterPosition());
+        }
+
+    }
+    public interface RecyclerViewClickListenerPortfolio {
+        void onClick(View view,int position);
     }
 }

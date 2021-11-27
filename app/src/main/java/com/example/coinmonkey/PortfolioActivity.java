@@ -10,8 +10,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.graphics.Color;
+import android.view.View;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -20,7 +20,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 import com.github.mikephil.charting.animation.Easing;
@@ -30,8 +29,6 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
-
-import java.util.ArrayList;
 
 public class PortfolioActivity extends AppCompatActivity {
     RecyclerView recyclerViewAdapterPortfolio;
@@ -49,6 +46,7 @@ public class PortfolioActivity extends AppCompatActivity {
     ArrayList<Integer> colors;
     TextView totalPortfolioValue;
     Double liquidCash = 0.0;
+    private RecyclerViewAdapterPortfolio.RecyclerViewClickListenerPortfolio listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,10 +75,10 @@ public class PortfolioActivity extends AppCompatActivity {
         symbolToNames.put("luna", "terra-luna");
         symbolToNames.put("ltc", "litecoin");
 
-        new GetContacts().execute();
+        new GetPortfolio().execute();
     }
 
-    class GetContacts extends AsyncTask<Void, Void, Void> {
+    class GetPortfolio extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute() {
@@ -131,7 +129,8 @@ public class PortfolioActivity extends AppCompatActivity {
             if (progressDialog.isShowing())
                 progressDialog.dismiss();
             recyclerViewAdapterPortfolio = findViewById(R.id.recyclerViewPortfolio);
-            RecyclerViewAdapterPortfolio adapter = new RecyclerViewAdapterPortfolio(coin_symbols, amountsCash, amountsCoin, changes, getApplicationContext());
+            setOnClickListener();
+            RecyclerViewAdapterPortfolio adapter = new RecyclerViewAdapterPortfolio(coin_symbols, amountsCash, amountsCoin, changes, getApplicationContext(), listener);
             recyclerViewAdapterPortfolio.setAdapter(adapter);
             recyclerViewAdapterPortfolio.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
@@ -201,6 +200,16 @@ public class PortfolioActivity extends AppCompatActivity {
             pieChart.getDescription().setEnabled(false);
             pieChart.animateY(1400, Easing.EaseInOutQuad);
         }
-
+    }
+    private void setOnClickListener() {
+        listener = new RecyclerViewAdapterPortfolio.RecyclerViewClickListenerPortfolio() {
+            @Override
+            public void onClick(View view, int position) {
+                Intent i = new Intent(getApplicationContext(), SellActivity.class);
+                i.putExtra("user", getIntent().getSerializableExtra("user"));
+                i.putExtra("symbol",coin_symbols.get(position));
+                startActivity(i);
+            }
+        };
     }
 }

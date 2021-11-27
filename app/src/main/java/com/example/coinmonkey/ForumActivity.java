@@ -20,7 +20,7 @@ public class ForumActivity extends AppCompatActivity {
     ArrayList<String> postUsernames = new ArrayList<>();
     ArrayList<String> postMessages = new ArrayList<>();
     ArrayList<String> postTimestamps = new ArrayList<>();
-    private RecyclerViewAdapterPost.RecyclerViewClickListener listener;
+    private RecyclerViewAdapterPost.RecyclerViewClickListenerPost listener;
     Button createPost;
 
     @Override
@@ -66,7 +66,7 @@ public class ForumActivity extends AppCompatActivity {
     }
 
     private void setOnClickListener(){
-        listener = new RecyclerViewAdapterPost.RecyclerViewClickListener() {
+        listener = new RecyclerViewAdapterPost.RecyclerViewClickListenerPost() {
             @Override
             public void onClick(View view, int position) {
                 int post_id = postIds.get(position);

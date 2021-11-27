@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFDD0"
+    tools:context=".SellActivity">
+
+    <TextView
+        android:id="@+id/logoOrder"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#87644F"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/sellCoinHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:fontFamily="@font/quicksand"
+        android:gravity="center"
+        android:text="Sell Coin"
+        android:textColor="#E6B99F"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/logoSell"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/monkey"
+        android:translationZ="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/holdingNameSell"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:autoSizeStepGranularity="2sp"
+        android:autoSizeTextType="uniform"
+        android:background="#87644F"
+        android:fontFamily="@font/quicksand"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Bitcoin Holding"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.076" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="603dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#964B00">
+
+            <TextView
+                android:id="@+id/coinAmountSellLabel"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:autoSizeMaxTextSize="25dp"
+                android:autoSizeStepGranularity="2sp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/quicksand"
+                android:gravity="center|left"
+                android:paddingLeft="10dp"
+                android:text="Current amount:"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/coinAmountSell"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:autoSizeMaxTextSize="20dp"
+                android:autoSizeStepGranularity="2sp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/quicksand"
+                android:gravity="center"
+                android:text="1"
+                android:textStyle="bold"
+                android:paddingRight="40dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#E6B99F">
+
+            <TextView
+                android:id="@+id/coinCurrentCashSellLabel"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:paddingLeft="10dp"
+                android:layout_weight="1"
+                android:autoSizeMaxTextSize="21dp"
+                android:autoSizeStepGranularity="2sp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/quicksand"
+                android:gravity="center|left"
+                android:text="Current amount ($):"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/coinCurrentCashSell"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:autoSizeMaxTextSize="20dp"
+                android:autoSizeStepGranularity="2sp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/quicksand"
+                android:gravity="center"
+                android:text="65,500.00$"
+                android:textStyle="bold"
+                android:paddingRight="40dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#964B00"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/initialInvestmentSellLabel"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:paddingLeft="10dp"
+                android:autoSizeStepGranularity="2sp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/quicksand"
+                android:text="Initial investment ($):"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:autoSizeMaxTextSize="21dp"
+                android:gravity="center|left"/>
+            <TextView
+                android:id="@+id/initialInvestmentSell"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:autoSizeStepGranularity="2sp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/quicksand"
+                android:text="30,000$"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:autoSizeMaxTextSize="20dp"
+                android:paddingRight="40dp"
+                android:gravity="center"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/sellAmount"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/textviewborder"
+                android:gravity="center"
+                android:hint="Amount ($)"
+                android:inputType="numberDecimal"
+                android:textAlignment="center"
+                android:textColor="#ff0000"
+                android:textColorHint="#ff0000" />
+
+            <Button
+                android:id="@+id/sell"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:backgroundTint="#ff0000"
+                android:fontFamily="@font/quicksand"
+                android:gravity="center"
+                android:text="Sell"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:cornerRadius="100dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
