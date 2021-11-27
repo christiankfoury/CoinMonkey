@@ -89,8 +89,7 @@
         android:id="@+id/returnToForumButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#FF0000
-"
+        android:backgroundTint="#FF0000"
         android:text="Return to Forum"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

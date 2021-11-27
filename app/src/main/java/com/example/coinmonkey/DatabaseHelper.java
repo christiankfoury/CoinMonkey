@@ -243,10 +243,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    public Cursor getRepliesByPost(String post_id){
+    public Cursor getRepliesByPost(int post_id){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Cursor res = db.rawQuery("SELECT * FROM " + REPLY_TABLE + "WHERE POST_ID = " + post_id, null);
+        Cursor res = db.rawQuery("SELECT * FROM " + REPLY_TABLE + " WHERE POST_ID = " + post_id, null);
 
         return res;
     }
