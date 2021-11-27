@@ -83,6 +83,10 @@ public class DepositFragment extends Fragment {
         depositButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (Double.parseDouble(input.getText().toString()) < 0) {
+                    Toast.makeText(getContext(), "Why would you desposit 0$ ?", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 try{
                     DatabaseHelper myDB = new DatabaseHelper(getActivity());
                     // Saving user Deposit
@@ -96,6 +100,7 @@ public class DepositFragment extends Fragment {
                     //Updating the database balance
                     myDB.updateBalance(user.getUsername(),updatedBalance);
                     updateBalance(user);
+                    input.setText("");
                     Toast.makeText(getActivity(),"$" + userDeposit + " has been deposited into your balance",Toast.LENGTH_SHORT).show();
                 }catch (Exception e){
                     Toast.makeText(getActivity(),"The Deposit Amount has to be in the following format -> (0.00)",Toast.LENGTH_SHORT).show();

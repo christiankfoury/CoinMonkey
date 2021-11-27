@@ -89,6 +89,9 @@ public class ChangePasswordFragment extends Fragment {
                 else{
                     myDB = new DatabaseHelper(getActivity());
                     myDB.updatePassword(user.getUsername(),newPassword.getText().toString());
+                    currentPassword.setText("");
+                    newPassword.setText("");
+                    newPasswordConfirm.setText("");
                     Toast.makeText(getActivity(),"Your Password has been updated",Toast.LENGTH_SHORT).show();
                 }
             }

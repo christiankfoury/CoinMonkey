@@ -35,7 +35,7 @@ public class CoinDetailsActivity extends AppCompatActivity {
 
     double priceDouble;
     EditText amount;
-    Button buy;
+    Button buy, backButton;
 
 
     private static final String TAG = "MainActivity";
@@ -65,6 +65,7 @@ public class CoinDetailsActivity extends AppCompatActivity {
 
         amount = findViewById(R.id.amountCoinDetails);
         buy = findViewById(R.id.buy);
+        backButton = findViewById(R.id.backButtonCoinDetails);
 
         // intent
         user = (User) getIntent().getSerializableExtra("user");
@@ -166,6 +167,10 @@ public class CoinDetailsActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Amount must not be empty!", Toast.LENGTH_LONG).show();
                     return;
                 }
+                if (Double.parseDouble(amount.getText().toString()) <= 0) {
+                    Toast.makeText(getApplicationContext(), "Amount must greater than 0. Don't cheapen out!", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 // in case user input an invalid number
                 try{
                     // Saving user Deposit
@@ -237,6 +242,13 @@ public class CoinDetailsActivity extends AppCompatActivity {
                     checkWatchlist();
                     Toast.makeText(context, symbol + " has been removed from your watchlist",Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }
