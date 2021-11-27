@@ -16,6 +16,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String ORDERS_TABLE = "orders_table";
     public static final String WATCHLIST_TABLE = "watchlist_table";
     public static final String PORTFOLIO_TABLE = "portfolio_table";
+    public static final String POST_TABLE = "post_table";
+    public static final String REPLY_TABLE = "reply_table";
 
     public static final String USER_COL_1 = "USERNAME";
     public static final String USER_COL_2 = "FIRST_NAME";
@@ -41,6 +43,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String PORTFOLIO_COL_4 = "AMOUNT";
     public static final String PORTFOLIO_COL_5 = "INITIAL_INVESTMENT";
 
+    public static final String POST_COL_1 = "POST_ID";
+    public static final String POST_COL_2 = "USERNAME";
+    public static final String POST_COL_3 = "POST_MESSAGE";
+    public static final String POST_COL_4 = "TIMESTAMP";
+
+    public static final String REPLY_COL_1 = "REPLY_ID";
+    public static final String REPLY_COL_2 = "POST_ID";
+    public static final String REPLY_COL_3 = "USERNAME";
+    public static final String REPLY_COL_4 = "REPLY_MESSAGE";
+    public static final String REPLY_COL_5 = "TIMESTAMP";
+
 
 
 
@@ -57,6 +70,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 " FOREIGN KEY (USERNAME) REFERENCES user_table (username))");
         sqLiteDatabase.execSQL("CREATE TABLE " + PORTFOLIO_TABLE + " (PORTFOLIO_ID integer primary key autoincrement, COIN_SYMBOL text, USERNAME text, AMOUNT DOUBLE, INITIAL_INVESTMENT DOUBLE, " +
                 " FOREIGN KEY (USERNAME) REFERENCES user_table (username))");
+        sqLiteDatabase.execSQL("CREATE TABLE " + POST_TABLE + " (POST_ID integer primary key autoincrement, USERNAME text, POST_MESSAGE text, timestamp DATETIME DEFAULT (strftime('%Y-%m-%dT%H:%M', 'now')), " +
+                " FOREIGN KEY (USERNAME) REFERENCES user_table (username))");
+        sqLiteDatabase.execSQL("CREATE TABLE " + REPLY_TABLE + " (REPLY_ID integer primary key autoincrement, POST_ID integer, USERNAME text, REPLY_MESSAGE text, timestamp DATETIME DEFAULT (strftime('%Y-%m-%dT%H:%M', 'now')) , " +
+                " FOREIGN KEY (USERNAME) REFERENCES user_table (username), FOREIGN KEY (POST_ID) REFERENCES post_table (post_id))");
     }
 
     @Override
@@ -65,6 +82,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ORDERS_TABLE);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + WATCHLIST_TABLE);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + PORTFOLIO_TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + POST_TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + REPLY_TABLE);
         onCreate(sqLiteDatabase);
     }
 
@@ -136,6 +155,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else return true;
     }
 
+    public boolean insertPost(String username,String post_message){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put(POST_COL_2,username);
+        cv.put(POST_COL_3,post_message);
+
+        long result = db.insert(POST_TABLE, null, cv);
+
+        if(result == -1){
+            return false;
+        }
+        else return true;
+    }
+
+    public boolean insertReply(int post_id, String username, String reply_message){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put(REPLY_COL_2,post_id);
+        cv.put(REPLY_COL_3,username);
+        cv.put(REPLY_COL_4,reply_message);
+
+        long result = db.insert(REPLY_TABLE, null, cv);
+
+        if(result == -1){
+            return false;
+        }
+        else return true;
+    }
+
+
     public Cursor getUser(String username){
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -172,6 +223,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor res = db.rawQuery("SELECT * FROM " + PORTFOLIO_TABLE + " WHERE USERNAME = \"" + username + "\"", null);
+
+        return res;
+    }
+
+    public Cursor getPostByID(int post_id){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor res = db.rawQuery("SELECT * FROM " + POST_TABLE + " WHERE POST_ID = " + post_id, null);
+
+        return res;
+    }
+
+    public Cursor getAllPosts(){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor res = db.rawQuery("SELECT * FROM " + POST_TABLE, null);
+
+        return res;
+    }
+
+    public Cursor getRepliesByPost(String post_id){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor res = db.rawQuery("SELECT * FROM " + REPLY_TABLE + "WHERE POST_ID = " + post_id, null);
 
         return res;
     }
@@ -213,6 +288,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else return true;
     }
 
+    public boolean updatePost(int post_id, String post_message){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put(POST_COL_3,post_message);
+        db.update(USER_TABLE,cv,"POST_ID = ? ", new String[] {String.valueOf(post_id)});
+
+        return true;
+    }
+
+    public boolean updateReply(String reply_id, String reply_message){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put(REPLY_COL_4,reply_message);
+        db.update(USER_TABLE,cv,"POST_ID = ? ", new String[] {String.valueOf(reply_id)});
+
+        return true;
+    }
+
+
     public Cursor getPortfolioUsernameCoin(String username, String coinSymbol){
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -225,6 +321,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         int result = db.delete(WATCHLIST_TABLE, "USERNAME = ? AND COIN_SYMBOL = ?", new String[] {username,coin_symbol});
+
+        if (result == -1){
+            return false;
+        }
+        else return true;
+    }
+
+    public boolean deletePost(int post_id){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        int result = db.delete(POST_TABLE, "POST_ID = ?", new String[] {String.valueOf(post_id)});
+
+        if (result == -1){
+            return false;
+        }
+        else return true;
+    }
+
+    public boolean deleteReply(int reply_id){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        int result = db.delete(REPLY_TABLE, "REPLY_ID = ?", new String[] {String.valueOf(reply_id)});
 
         if (result == -1){
             return false;
