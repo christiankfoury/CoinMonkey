@@ -1,27 +1,19 @@
 package com.example.coinmonkey;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.ProgressDialog;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import com.github.mikephil.charting.animation.Easing;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -39,8 +31,8 @@ public class SellActivity extends AppCompatActivity {
     ApiInterface apiInterface;
     private ProgressDialog progressDialog;
     User user;
-    String coinName;
-    double coinAmount, currentInvestmentValue;
+    String coinName, symbol;
+    double coinAmount, currentInvestmentValue, coinPrice, initialInvestment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +49,13 @@ public class SellActivity extends AppCompatActivity {
         sell = findViewById(R.id.sell);
 
         user = (User) getIntent().getSerializableExtra("user");
-        String symbol = getIntent().getStringExtra("symbol").toLowerCase();
+        symbol = getIntent().getStringExtra("symbol").toLowerCase();
         coinName = symbolToNames.get(symbol);
+        System.out.println(coinName);
+        System.out.println("HELLO");
         holdingNameSell.setText(coinName);
-        coinName = coinName.toLowerCase();
 
+        coinName = coinName.toLowerCase();
         // COINGECKO ON HOW THEY WRITE THE AMES OF CRYPTO *technicalities*
         if (coinName.equals("avalanche"))
             coinName = "avalanche-2";
@@ -75,7 +69,7 @@ public class SellActivity extends AppCompatActivity {
         myDB = new DatabaseHelper(this);
         Cursor cursor = myDB.getPortfolioUsernameCoin(user.getUsername(), symbol.toUpperCase());
         cursor.moveToFirst();
-        double initialInvestment = cursor.getDouble(4);
+        initialInvestment = cursor.getDouble(4);
         coinAmount = cursor.getDouble(3);
 
         initialInvestmentSell.setText(NumberFormat.getCurrencyInstance(new Locale("en", "US"))
@@ -104,13 +98,14 @@ public class SellActivity extends AppCompatActivity {
 
             apiInterface = ApiClient.getClient().create(ApiInterface.class);
             // API CALL FOR MARKET DATA
-            Call<List<CoinClass>> call = apiInterface.getCoin("usd",
-                    symbolToNames.get(coinName.toLowerCase()));
+            Call<List<CoinClass>> call = apiInterface.getCoin("usd", coinName.toLowerCase());
             try {
                 Response<List<CoinClass>> response = call.execute();
                 List<CoinClass> coinList = response.body();
-                double price = coinList.get(0).getCurrent_price();
-                currentInvestmentValue = coinAmount * price;
+                coinPrice = coinList.get(0).getCurrent_price();
+                currentInvestmentValue = coinAmount * coinPrice;
+                System.out.println("coin amount " + coinAmount);
+                System.out.println("coin price " + coinPrice);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -125,6 +120,40 @@ public class SellActivity extends AppCompatActivity {
                 progressDialog.dismiss();
             coinCurrentCashSell.setText(NumberFormat.getCurrencyInstance(new Locale("en", "US"))
                     .format(currentInvestmentValue));
+
+            sell.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (sellAmount.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "Please input a value", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (Double.parseDouble(sellAmount.getText().toString()) < 0) {
+                        Toast.makeText(getApplicationContext(), "Invalid amount!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (Double.parseDouble(sellAmount.getText().toString()) > currentInvestmentValue) {
+                        Toast.makeText(getApplicationContext(), "You do not own the sufficient amount to sell!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    double sellAmountDouble = Double.parseDouble(sellAmount.getText().toString());
+
+                    double newAmountOfCoins = coinAmount - sellAmountDouble / coinPrice;
+                    double newInitialInvestment = newAmountOfCoins * coinPrice;
+                    myDB.updatePortfolio(user.getUsername(), symbol.toUpperCase(), newAmountOfCoins, newInitialInvestment);
+                    Toast.makeText(getApplicationContext(), sellAmountDouble + "$ have successfully sold!", Toast.LENGTH_SHORT).show();
+
+                    coinAmount = newAmountOfCoins;
+                    currentInvestmentValue = coinPrice * coinAmount;
+                    initialInvestment = newInitialInvestment;
+                    System.out.println(newAmountOfCoins + " " + initialInvestment);
+
+
+                    coinAmountSell.setText(coinAmount + "");
+                    coinCurrentCashSell.setText(currentInvestmentValue + "");
+                    initialInvestmentSell.setText(initialInvestment + "");
+                }
+            });
         }
     }
 
