@@ -54,6 +54,12 @@ public class PostActivity extends AppCompatActivity {
                 if(!replyInput.getText().toString().trim().isEmpty()){
                     if(myDB.insertReply(getIntent().getIntExtra("id",0),user.getUsername(),replyInput.getText().toString())){
                         Toast.makeText(getApplicationContext(), "Reply has been posted", Toast.LENGTH_SHORT).show();
+                        usernames.add(((User) getIntent().getSerializableExtra("user")).getUsername());
+                        messages.add(replyInput.getText().toString());
+                        myDB = new DatabaseHelper(getApplicationContext());
+                        Cursor cursor = myDB.getRepliesByPost(getIntent().getIntExtra("id",0));
+                        cursor.moveToLast();
+                        timestamps.add(cursor.getString(4));
                         adapter.notifyItemInserted(usernames.size() - 1);
                     }
                     else{
