@@ -9,6 +9,26 @@
     tools:layout_editor_absoluteY="37dp"
     android:background="#E6B99F">
 
+    <EditText
+        android:id="@+id/securityQuestion"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittextlogin"
+        android:ems="10"
+        android:fontFamily="@font/quicksand"
+        android:hint="Security Question"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:textColorHint="#FFFDD0"
+        android:translationZ="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.724" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,8 +48,8 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="363dp"
-        android:layout_height="439dp"
+        android:layout_width="375dp"
+        android:layout_height="499dp"
         android:adjustViewBounds="true"
         android:elevation="2dp"
         android:scaleType="fitXY"
@@ -39,6 +59,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.606"
         app:srcCompat="@drawable/loginbackground" />
+
 
     <Button
         android:id="@+id/register"
@@ -57,8 +78,27 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.863" />
+        app:layout_constraintVertical_bias="0.898" />
 
+    <EditText
+        android:id="@+id/securityAnswer"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittextlogin"
+        android:ems="10"
+        android:fontFamily="@font/quicksand"
+        android:hint="Security Answer"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:textColorHint="#FFFDD0"
+        android:translationZ="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.801" />
 
     <EditText
         android:id="@+id/signUpFirstName"
@@ -75,10 +115,10 @@
         android:translationZ="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.421" />
+        app:layout_constraintVertical_bias="0.327" />
 
     <EditText
         android:id="@+id/signUpLastName"
@@ -97,7 +137,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.403" />
 
     <EditText
         android:id="@+id/signUpUsermame"
@@ -117,7 +158,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.584" />
+        app:layout_constraintVertical_bias="0.486" />
 
     <EditText
         android:id="@+id/signUpPassword"
@@ -137,7 +178,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.663" />
+        app:layout_constraintVertical_bias="0.562" />
 
     <EditText
         android:id="@+id/signUpConfirmPassword"
@@ -157,7 +198,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.74" />
+        app:layout_constraintVertical_bias="0.644" />
 
     <TextView
         android:id="@+id/textView"
@@ -194,14 +235,15 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="163dp"
-        android:layout_height="142dp"
+        android:layout_width="154dp"
+        android:layout_height="125dp"
         android:translationZ="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.203"
+        app:layout_constraintVertical_bias="0.151"
         app:srcCompat="@drawable/monkey" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

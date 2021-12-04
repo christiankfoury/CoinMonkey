@@ -14,7 +14,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     DatabaseHelper myDB;
     TextView clickHereLogIn;
-    EditText signUpFirstName, signUpLastName, signUpUsername, signUpPassword, signUpConfirmPassword;
+    EditText signUpFirstName, signUpLastName, signUpUsername, signUpPassword, signUpConfirmPassword, securityQuestion, securityAnswer;
     Button register;
 
     @Override
@@ -29,6 +29,8 @@ public class SignUpActivity extends AppCompatActivity {
         signUpConfirmPassword = findViewById(R.id.signUpConfirmPassword);
         clickHereLogIn = findViewById(R.id.clickHereLogIn);
         register = findViewById(R.id.register);
+        securityQuestion = findViewById(R.id.securityQuestion);
+        securityAnswer = findViewById(R.id.securityAnswer);
         myDB = new DatabaseHelper(this);
 
         register.setOnClickListener(new View.OnClickListener() {
@@ -39,8 +41,12 @@ public class SignUpActivity extends AppCompatActivity {
                 String lastName = signUpLastName.getText().toString();
                 String password = signUpPassword.getText().toString();
                 String confirmPassword = signUpConfirmPassword.getText().toString();
+                String question = securityQuestion.getText().toString();
+                String answer = securityAnswer.getText().toString();
+
                 if (firstName.trim().equals("") || lastName.trim().equals("") || username.trim().equals("") ||
-                        password.trim().equals("") || confirmPassword.trim().equals("")) {
+                        password.trim().equals("") || confirmPassword.trim().equals("") || question.trim().equals("") ||
+                        answer.trim().equals("")){
                     Toast.makeText(getApplicationContext(), "Fill up all fields", Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -52,7 +58,7 @@ public class SignUpActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Passwords do not match", Toast.LENGTH_LONG).show();
                     return;
                 }
-                myDB.insertUser(username, firstName, lastName, password);
+                myDB.insertUser(username, firstName, lastName, password,question,answer);
                 startActivity(new Intent(SignUpActivity.this, MainActivity.class));
             }
         });

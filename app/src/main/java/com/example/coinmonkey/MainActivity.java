@@ -22,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
-    TextView signUp;
+    TextView signUp,forgotPassword;
     EditText usernameInput,passwordInput;
     Button login;
     DatabaseHelper myDb;
@@ -39,6 +39,14 @@ public class MainActivity extends AppCompatActivity {
         usernameInput = findViewById(R.id.logInUsername);
         passwordInput = findViewById(R.id.logInPassword);
         login = findViewById(R.id.login);
+        forgotPassword = findViewById(R.id.forgotPassword);
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,ForgotPasswordActivity.class));
+            }
+        });
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override

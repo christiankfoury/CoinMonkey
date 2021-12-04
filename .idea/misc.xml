@@ -8,18 +8,23 @@
         <entry key="..\:/School/Vanier/Fall_2021/Android_Dev/Project/CoinMonkey/app/src/main/res/layout/activity_coins.xml" value="0.33" />
         <entry key="..\:/School/Vanier/Fall_2021/Android_Dev/Project/CoinMonkey/app/src/main/res/layout/activity_create_post.xml" value="0.36666666666666664" />
         <entry key="..\:/School/Vanier/Fall_2021/Android_Dev/Project/CoinMonkey/app/src/main/res/layout/activity_deposit.xml" value="0.35260416666666666" />
+        <entry key="..\:/School/Vanier/Fall_2021/Android_Dev/Project/CoinMonkey/app/src/main/res/layout/activity_forgot_password.xml" value="0.33" />
         <entry key="..\:/School/Vanier/Fall_2021/Android_Dev/Project/CoinMonkey/app/src/main/res/layout/activity_forum.xml" value="0.36666666666666664" />
         <entry key="..\:/School/Vanier/Fall_2021/Android_Dev/Project/CoinMonkey/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/School/Vanier/Fall_2021/Android_Dev/Project/CoinMonkey/app/src/main/res/layout/activity_orders.xml" value="0.36666666666666664" />
         <entry key="..\:/School/Vanier/Fall_2021/Android_Dev/Project/CoinMonkey/app/src/main/res/layout/activity_portfolio.xml" value="0.36666666666666664" />
         <entry key="..\:/School/Vanier/Fall_2021/Android_Dev/Project/CoinMonkey/app/src/main/res/layout/activity_post.xml" value="0.36666666666666664" />
         <entry key="..\:/School/Vanier/Fall_2021/Android_Dev/Project/CoinMonkey/app/src/main/res/layout/activity_settings.xml" value="0.33" />
-        <entry key="..\:/School/Vanier/Fall_2021/Android_Dev/Project/CoinMonkey/app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
+        <entry key="..\:/School/Vanier/Fall_2021/Android_Dev/Project/CoinMonkey/app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
         <entry key="..\:/School/Vanier/Fall_2021/Android_Dev/Project/CoinMonkey/app/src/main/res/layout/activity_wishlist.xml" value="0.36666666666666664" />
         <entry key="..\:/School/Vanier/Fall_2021/Android_Dev/Project/CoinMonkey/app/src/main/res/layout/activity_withdraw.xml" value="0.36666666666666664" />
         <entry key="..\:/School/Vanier/Fall_2021/Android_Dev/Project/CoinMonkey/app/src/main/res/layout/child_view.xml" value="0.3120471014492754" />
         <entry key="..\:/School/Vanier/Fall_2021/Android_Dev/Project/CoinMonkey/app/src/main/res/layout/coins_child_view.xml" value="0.3120471014492754" />
         <entry key="..\:/School/Vanier/Fall_2021/Android_Dev/Project/CoinMonkey/app/src/main/res/layout/fragment_change_password.xml" value="0.3632246376811594" />
+        <entry key="..\:/School/Vanier/Fall_2021/Android_Dev/Project/CoinMonkey/app/src/main/res/layout/fragment_enter_username.xml" value="0.36666666666666664" />
+        <entry key="..\:/School/Vanier/Fall_2021/Android_Dev/Project/CoinMonkey/app/src/main/res/layout/fragment_forgot_password_change_password.xml" value="0.2398989898989899" />
+        <entry key="..\:/School/Vanier/Fall_2021/Android_Dev/Project/CoinMonkey/app/src/main/res/layout/fragment_security_question.xml" value="0.36666666666666664" />
+        <entry key="..\:/School/Vanier/Fall_2021/Android_Dev/Project/CoinMonkey/app/src/main/res/layout/fragment_settings.xml" value="0.36666666666666664" />
         <entry key="..\:/School/Vanier/Fall_2021/Android_Dev/Project/CoinMonkey/app/src/main/res/layout/portfolio_child_view.xml" value="0.36666666666666664" />
         <entry key="..\:/School/Vanier/Fall_2021/Android_Dev/Project/CoinMonkey/app/src/main/res/layout/posts_child_view.xml" value="0.33" />
         <entry key="..\:/School/Vanier/Fall_2021/Android_Dev/Project/CoinMonkey/app/src/main/res/layout/replies_child_view.xml" value="0.36666666666666664" />

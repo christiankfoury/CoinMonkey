@@ -24,6 +24,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String USER_COL_3 = "LAST_NAME";
     public static final String USER_COL_4 = "PASSWORD";
     public static final String USER_COL_5 = "BALANCE";
+    public static final String USER_COL_6 = "SECURITY_QUESTION";
+    public static final String USER_COL_7 = "SECURITY_ANSWER";
 
     public static final String ORDERS_COL_1 = "ORDERS_ID";
     public static final String ORDERS_COL_2 = "COIN_SYMBOL";
@@ -63,7 +65,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("CREATE TABLE " + USER_TABLE + " (USERNAME text primary key, FIRST_NAME text, LAST_NAME text, PASSWORD text, BALANCE DOUBLE)");
+        sqLiteDatabase.execSQL("CREATE TABLE " + USER_TABLE + " (USERNAME text primary key, FIRST_NAME text, LAST_NAME text, PASSWORD text, BALANCE DOUBLE, SECURITY_QUESTION text, SECURITY_ANSWER text)");
         sqLiteDatabase.execSQL("CREATE TABLE " + ORDERS_TABLE + " (ORDERS_ID integer primary key autoincrement, COIN_SYMBOL text, USERNAME text, TYPE text, AMOUNT DOUBLE," +
                 " FOREIGN KEY (USERNAME) REFERENCES user_table (username))");
         sqLiteDatabase.execSQL("CREATE TABLE " + WATCHLIST_TABLE + " (WATCHLIST_ID integer primary key autoincrement, COIN_SYMBOL text, USERNAME text, COIN_NAME text, " +
@@ -87,7 +89,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public boolean insertUser(String username,String first_name, String last_name, String password){
+    public boolean insertUser(String username,String first_name, String last_name, String password, String security_question, String security_answer){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues cv = new ContentValues();
@@ -96,6 +98,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(USER_COL_3,last_name);
         cv.put(USER_COL_4,password);
         cv.put(USER_COL_5,0.0);
+        cv.put(USER_COL_6,security_question);
+        cv.put(USER_COL_7,security_answer);
 
         long result = db.insert(USER_TABLE, null, cv);
 
@@ -190,7 +194,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getUser(String username){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Cursor res = db.query(USER_TABLE, new String[]{USER_COL_1,USER_COL_2, USER_COL_3, USER_COL_4, USER_COL_5}, "username = ?", new String[] {username}, null, null, null);
+        Cursor res = db.query(USER_TABLE, new String[]{USER_COL_1,USER_COL_2, USER_COL_3, USER_COL_4, USER_COL_5, USER_COL_6, USER_COL_7}, "username = ?", new String[] {username}, null, null, null);
 
         return res;
     }
