@@ -1,5 +1,6 @@
 package com.example.coinmonkey;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -205,6 +206,7 @@ public class PortfolioActivity extends AppCompatActivity {
         listener = new RecyclerViewAdapterPortfolio.RecyclerViewClickListenerPortfolio() {
             @Override
             public void onClick(View view, int position) {
+                finish();
                 Intent i = new Intent(getApplicationContext(), SellActivity.class);
                 i.putExtra("user", getIntent().getSerializableExtra("user"));
                 i.putExtra("symbol",coin_symbols.get(position));

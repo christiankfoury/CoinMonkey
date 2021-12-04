@@ -332,6 +332,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else return true;
     }
 
+    public boolean deletePortfolio(String username, String coin_symbol){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        int result = db.delete(PORTFOLIO_TABLE, "USERNAME = ? AND COIN_SYMBOL = ?", new String[] {username,coin_symbol});
+
+        if (result == -1){
+            return false;
+        }
+        else return true;
+    }
+
     public boolean deletePost(int post_id){
         SQLiteDatabase db = this.getWritableDatabase();
 

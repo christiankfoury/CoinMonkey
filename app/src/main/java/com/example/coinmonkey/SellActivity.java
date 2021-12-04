@@ -3,6 +3,7 @@ package com.example.coinmonkey;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ public class SellActivity extends AppCompatActivity {
     User user;
     String coinName, symbol;
     double coinAmount, currentInvestmentValue, coinPrice, initialInvestment;
+    double userBalance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +77,10 @@ public class SellActivity extends AppCompatActivity {
         initialInvestmentSell.setText(NumberFormat.getCurrencyInstance(new Locale("en", "US"))
                 .format(initialInvestment));
         coinAmountSell.setText(coinAmount + "");
+
+        cursor = myDB.getUser(user.getUsername());
+        cursor.moveToFirst();
+        userBalance = cursor.getDouble(4);
 
         new GetCurrentInvestment().execute();
     }
@@ -138,10 +144,41 @@ public class SellActivity extends AppCompatActivity {
                     }
                     double sellAmountDouble = Double.parseDouble(sellAmount.getText().toString());
 
+                    System.out.println("currentinvestvalue " + currentInvestmentValue);
+                    System.out.println("sellamountdouble " + sellAmountDouble);
+                    System.out.println("user balance " + user.getBalance());
+
+                    if (currentInvestmentValue - sellAmountDouble  < 0.01 && currentInvestmentValue - sellAmountDouble > 0) {
+                        myDB.deletePortfolio(user.getUsername(), symbol.toUpperCase());
+                        myDB.insertOrder(symbol.toUpperCase(), user.getUsername(),"sell", currentInvestmentValue / coinPrice);
+                        myDB.updateBalance(user.getUsername(), userBalance + currentInvestmentValue);
+                        Toast.makeText(getApplicationContext(), currentInvestmentValue + "$ have successfully sold! You have sold all of your " + symbol.toUpperCase() + " holdings!", Toast.LENGTH_SHORT).show();
+                        finish();
+                        Intent intent = new Intent(getApplicationContext(), PortfolioActivity.class);
+                        intent.putExtra("user", user);
+                        startActivity(intent);
+                        return;
+                    }
+
+                    if (sellAmountDouble == currentInvestmentValue) {
+                        myDB.deletePortfolio(user.getUsername(), symbol.toUpperCase());
+                        myDB.insertOrder(symbol.toUpperCase(), user.getUsername(),"sell", sellAmountDouble / coinPrice);
+                        myDB.updateBalance(user.getUsername(), userBalance + sellAmountDouble);
+                        Toast.makeText(getApplicationContext(), sellAmountDouble + "$ have successfully sold! You have sold all of your " + symbol.toUpperCase() + " holdings!", Toast.LENGTH_SHORT).show();
+                        finish();
+                        Intent intent = new Intent(getApplicationContext(), PortfolioActivity.class);
+                        intent.putExtra("user", user);
+                        startActivity(intent);
+                        return;
+                    }
+
                     double newAmountOfCoins = coinAmount - sellAmountDouble / coinPrice;
                     double newInitialInvestment = newAmountOfCoins * coinPrice;
                     myDB.updatePortfolio(user.getUsername(), symbol.toUpperCase(), newAmountOfCoins, newInitialInvestment);
                     Toast.makeText(getApplicationContext(), sellAmountDouble + "$ have successfully sold!", Toast.LENGTH_SHORT).show();
+
+                    myDB.insertOrder(symbol.toUpperCase(), user.getUsername(),"sell", sellAmountDouble / coinPrice);
+                    myDB.updateBalance(user.getUsername(), userBalance + sellAmountDouble);
 
                     coinAmount = newAmountOfCoins;
                     currentInvestmentValue = coinPrice * coinAmount;
@@ -173,5 +210,14 @@ public class SellActivity extends AppCompatActivity {
         symbolToNames.put("cro", "Crypto.com Coin");
         symbolToNames.put("luna", "Terra-Luna");
         symbolToNames.put("ltc", "Litecoin");
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        System.out.println("ALLLOOOOOOOO");
+        Intent intent = new Intent(getApplicationContext(), PortfolioActivity.class);
+        intent.putExtra("user", user);
+        startActivity(intent);
     }
 }
