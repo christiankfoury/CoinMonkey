@@ -8,6 +8,27 @@
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="37dp">
 
+    <TextView
+        android:id="@+id/coinPageLiquidCash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounding"
+        android:backgroundTint="#964B00"
+        android:padding="10dp"
+        android:shadowColor="@color/black"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="10"
+        android:text="Liquid cash: $100"
+        android:textColor="@color/white"
+        android:translationZ="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.832"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.15" />
+
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="89dp"
@@ -110,7 +131,6 @@
         app:layout_constraintVertical_bias="0.143" />
 
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -174,6 +194,7 @@
         android:id="@+id/hourChange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/quicksand"
         android:text="-1.46%"
         android:textColor="#ff0000"
         android:textSize="15dp"
@@ -182,13 +203,14 @@
         app:layout_constraintHorizontal_bias="0.882"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.753"
-        android:fontFamily="@font/quicksand"/>
+        app:layout_constraintVertical_bias="0.753" />
 
     <TextView
         android:id="@+id/volume"
         android:layout_width="130dp"
         android:layout_height="20dp"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="@font/quicksand"
         android:text="$39,817,123.96"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -196,15 +218,14 @@
         app:layout_constraintHorizontal_bias="0.948"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.853"
-        android:autoSizeTextType="uniform"
-        android:fontFamily="@font/quicksand"
-        />
+        app:layout_constraintVertical_bias="0.853" />
 
     <TextView
         android:id="@+id/marketCap"
         android:layout_width="130dp"
         android:layout_height="20dp"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="@font/quicksand"
         android:text="$1,299,863,833.96"
         android:textColor="@color/black"
         android:textSize="15dp"
@@ -213,10 +234,7 @@
         app:layout_constraintHorizontal_bias="0.944"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.801"
-        android:autoSizeTextType="uniform"
-        android:fontFamily="@font/quicksand"
-        />
+        app:layout_constraintVertical_bias="0.801" />
 
     <TextView
         android:id="@+id/textView6"
@@ -252,6 +270,7 @@
         android:id="@+id/low"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/quicksand"
         android:text="$63,833.96"
         android:textColor="@color/black"
         android:textSize="15dp"
@@ -260,13 +279,13 @@
         app:layout_constraintHorizontal_bias="0.213"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.797"
-        android:fontFamily="@font/quicksand"/>
+        app:layout_constraintVertical_bias="0.797" />
 
     <TextView
         android:id="@+id/price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/quicksand"
         android:text="$62,548.42"
         android:textColor="@color/black"
         android:textSize="15dp"
@@ -275,13 +294,13 @@
         app:layout_constraintHorizontal_bias="0.215"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.753"
-        android:fontFamily="@font/quicksand"/>
+        app:layout_constraintVertical_bias="0.753" />
 
     <TextView
         android:id="@+id/high"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/quicksand"
         android:text="$64,578.98"
         android:textColor="@color/black"
         android:textSize="15dp"
@@ -290,8 +309,7 @@
         app:layout_constraintHorizontal_bias="0.213"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.853"
-        android:fontFamily="@font/quicksand"/>
+        app:layout_constraintVertical_bias="0.853" />
 
 
     <Button
@@ -317,25 +335,25 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="240dp"
-        tools:layout_editor_absoluteY="209dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.526"
-        tools:layout_editor_absoluteX="0dp">
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="209dp">
 
         <TextView
             android:id="@+id/coinDescriptionDetails"
             android:layout_width="match_parent"
             android:layout_height="240dp"
+            android:fontFamily="@font/quicksand"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+            android:textFontWeight="900"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.526"
-            tools:layout_editor_absoluteX="0dp"
-            android:fontFamily="@font/quicksand"
-            android:textFontWeight="900"/>
+            tools:layout_editor_absoluteX="0dp" />
     </ScrollView>
 
     <EditText
@@ -345,30 +363,43 @@
         android:background="@drawable/textviewborder"
         android:gravity="center"
         android:hint="Amount"
-        android:textColorHint="#8FAF90"
+        android:inputType="numberDecimal"
         android:textAlignment="center"
         android:textColor="#4CAF50"
+        android:textColorHint="#8FAF90"
+        android:windowSoftInputMode="adjustResize"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.144"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.947"
-        android:windowSoftInputMode="adjustResize"
-        android:inputType="numberDecimal"
-        />
+        app:layout_constraintVertical_bias="0.947" />
 
     <Button
         android:id="@+id/backButtonCoinDetails"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/back"
+        android:backgroundTint="#964B00"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.002"
-        android:backgroundTint="#964B00"/>
+        app:layout_constraintVertical_bias="0.002" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/showBalanceFAB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:backgroundTint="#E6B99F"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.749"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.059"
+        app:srcCompat="@drawable/ic_orders" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

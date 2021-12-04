@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
@@ -25,12 +27,14 @@ import retrofit2.Response;
 
 public class CoinDetailsActivity extends AppCompatActivity {
     ApiInterface apiInterface;
-    TextView price, low, high, marketCap, hourChange, volume, description, coinNameDetails;
+    TextView price, low, high, marketCap, hourChange, volume, description, coinNameDetails,liquidCash;
     String priceText, lowText, highText, marketCapText, hourChangeText, volumeText, descriptionText, finalCoinName;
+    FloatingActionButton showBalance;
     ImageView coinImageDetails, star;
     DatabaseHelper myDB;
     Context context = this;
     User user;
+    boolean isFABVisible;
 
 
     double priceDouble;
@@ -58,6 +62,8 @@ public class CoinDetailsActivity extends AppCompatActivity {
         hourChange = findViewById(R.id.hourChange);
         volume = findViewById(R.id.volume);
         description = findViewById(R.id.coinDescriptionDetails);
+        liquidCash = findViewById(R.id.coinPageLiquidCash);
+        showBalance = findViewById(R.id.showBalanceFAB);
 
         coinNameDetails = findViewById(R.id.coinNameDetails);
         coinImageDetails = findViewById(R.id.coinImageDetails);
@@ -66,6 +72,9 @@ public class CoinDetailsActivity extends AppCompatActivity {
         amount = findViewById(R.id.amountCoinDetails);
         buy = findViewById(R.id.buy);
         backButton = findViewById(R.id.backButtonCoinDetails);
+
+        setupFAB();
+        setupLiquidCash();
 
         // intent
         user = (User) getIntent().getSerializableExtra("user");
@@ -207,6 +216,7 @@ public class CoinDetailsActivity extends AppCompatActivity {
                     myDB.insertOrder(finalSymbol, user.getUsername(), "buy", amountInCoin);
                     Toast.makeText(getApplicationContext(), "You bought " + amountInCoin + " of this coin!", Toast.LENGTH_LONG).show();
                     amount.setText("");
+                    setupLiquidCash();
 //                    //getting the current Balance
 //                    double updatedBalance = user.getBalance();
 //                    //Updating the balance
@@ -262,5 +272,32 @@ public class CoinDetailsActivity extends AppCompatActivity {
         else{
             star.setImageResource(R.drawable.star);
         }
+    }
+
+    private void setupFAB(){
+        liquidCash.setVisibility(View.GONE);
+
+        showBalance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!isFABVisible){
+                    liquidCash.setVisibility(View.VISIBLE);
+                    isFABVisible = true;
+                }
+                else{
+                    liquidCash.setVisibility(View.GONE);
+                    isFABVisible = false;
+                }
+            }
+        });
+
+    }
+
+    private void setupLiquidCash(){
+        myDB = new DatabaseHelper(getApplicationContext());
+        user = (User) getIntent().getSerializableExtra("user");
+        Cursor cursor = myDB.getUser(user.getUsername());
+        cursor.moveToFirst();
+        liquidCash.setText("Liquid Cash: $" + cursor.getDouble(4));
     }
 }
