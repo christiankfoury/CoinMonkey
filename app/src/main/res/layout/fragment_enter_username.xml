@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EnterUsernameFragment">
+    tools:context=".EnterUsernameFragment"
+    android:background="#E6B99F">
     
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,24 +17,30 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="Your username"
             android:gravity="center"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:background="@drawable/textviewborder"
+            android:fontFamily="@font/quicksand"
+            android:hint="Enter your username"
+            android:padding="10dp"/>
 
         <Button
             android:id="@+id/confirmForgotUsernameButton"
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Confirm" />
-        
+            android:text="Confirm"
+            android:backgroundTint="#FFFDD0"
+            android:fontFamily="@font/quicksand"/>
+
         <Button
             android:id="@+id/cancelForgotPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cancel"
+            android:layout_marginTop="10dp"
             android:backgroundTint="#FF0000"
-            android:layout_marginTop="20dp"/>
+            android:fontFamily="@font/quicksand"
+            android:text="Cancel" />
 
     </LinearLayout>
 </FrameLayout>

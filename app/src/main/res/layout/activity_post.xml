@@ -7,93 +7,197 @@
     tools:context=".PostActivity">
 
     <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Send a Reply"
-        app:layout_constraintBottom_toTopOf="@+id/messageReplyTextView"
+        android:id="@+id/logoOrder"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#87644F"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/usernameReplyTextView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Username"
-        app:layout_constraintBottom_toTopOf="@+id/repliesRecyclerView"
-        app:layout_constraintEnd_toStartOf="@+id/messageReplyTextView"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/messageReplyTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Message"
-        app:layout_constraintBottom_toTopOf="@+id/repliesRecyclerView"
-        app:layout_constraintEnd_toStartOf="@+id/timestampReplyTextView"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/usernameReplyTextView"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
-    <TextView
-        android:id="@+id/timestampReplyTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Timestamp"
-        app:layout_constraintBottom_toTopOf="@+id/repliesRecyclerView"
+        android:layout_height="50dp"
+        android:fontFamily="@font/quicksand"
+        android:gravity="center"
+        android:text="Replies"
+        android:textColor="#E6B99F"
+        android:textSize="18dp"
+        android:layout_marginLeft="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/messageReplyTextView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/monkey"
+        android:translationZ="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/textView9"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Send a Reply"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/messageReplyTextView"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.5"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/usernameReplyTextView"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Username"-->
+    <!--        tools:layout_editor_absoluteX="55dp"-->
+    <!--        tools:layout_editor_absoluteY="38dp" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/messageReplyTextView"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Message"-->
+    <!--        tools:layout_editor_absoluteX="173dp"-->
+    <!--        tools:layout_editor_absoluteY="75dp" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/timestampReplyTextView"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Timestamp"-->
+    <!--        tools:layout_editor_absoluteX="286dp"-->
+    <!--        tools:layout_editor_absoluteY="38dp" />-->
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/rounding"
+        android:backgroundTint="#9FD5FF"
+        android:orientation="vertical"
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"
+        android:layout_marginTop="50dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/usernameReplyTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/quicksand"
+                android:text="username"
+                android:textColor="#006BBF" />
+
+            <TextView
+                android:id="@+id/timestampReplyTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/quicksand"
+                android:text="timestamp"
+                android:textAlignment="viewEnd"
+                android:textColor="#006BBF" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/messageReplyTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/quicksand"
+            android:scrollbars="vertical"
+            android:text="Lorum adflkja sd fd fdkjfkjsdf sdlkfj dhfklj hjk oiu oi hlk jlk lkj jkl lkj  9oiu uoi nkl lkj gkj sdflkasjdf asdfdlkadnf df dfkldsfklasdf asdfkjlasdf asdflkjas dfjsdjs sdklsd sadndknlsd sdnd sd sd sdnfkjvj "
+            android:textColor="@color/white" />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/repliesRecyclerView"
-        android:layout_width="374dp"
-        android:layout_height="426dp"
-        app:layout_constraintBottom_toTopOf="@+id/postReplyButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernameReplyTextView" />
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"
+        android:layout_marginTop="170dp"
+        android:paddingTop="20dp"
+        tools:layout_editor_absoluteX="0dp" />
 
     <EditText
         android:id="@+id/replyEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="272dp"
+        android:layout_height="100dp"
         android:ems="10"
-        android:gravity="start|top"
+        android:gravity="top"
         android:hint="Enter your reply here"
-        android:inputType="textMultiLine"
-        app:layout_constraintBottom_toTopOf="@+id/returnToForumButton"
-        app:layout_constraintEnd_toStartOf="@+id/postReplyButton"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:inputType="text|textMultiLine"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/repliesRecyclerView" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"
+        android:layout_marginTop="490dp"/>
 
     <Button
         android:id="@+id/postReplyButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounding"
+        android:backgroundTint="#964B00"
+        android:padding="10dp"
+        android:shadowColor="@color/black"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="10"
         android:text="Post Reply"
-        app:layout_constraintBottom_toTopOf="@+id/returnToForumButton"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/replyEditText"
-        app:layout_constraintTop_toBottomOf="@+id/repliesRecyclerView" />
+        app:layout_constraintHorizontal_bias="0.948"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"
+        android:layout_marginTop="530dp"/>
 
     <Button
         android:id="@+id/returnToForumButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#FF0000"
-        android:text="Return to Forum"
+        android:text="Return to forum"
+        android:letterSpacing="0.2"
+        android:shadowColor="@color/black"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="10"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:backgroundTint="#E6B99F"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/replyEditText" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"
+        android:layout_marginTop="600dp"
+        tools:layout_editor_absoluteX="0dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

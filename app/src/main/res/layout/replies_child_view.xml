@@ -2,26 +2,45 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/childLinearLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="100dp"
+    android:layout_marginBottom="20dp"
+    android:padding="30dp"
+    android:orientation="vertical"
+    android:background="@drawable/rounding"
+    android:backgroundTint="#9FFFAC">
 
-    <TextView
-        android:id="@+id/replyChildUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Username" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/replyChildUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Username"
+            android:textColor="#00BF5C"
+            android:fontFamily="@font/quicksand"/>
+
+        <TextView
+            android:id="@+id/replyChildTimestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Timestamp"
+            android:fontFamily="@font/quicksand"
+            android:textColor="#00BF5C"
+            android:textAlignment="viewEnd"/>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/replyChildMessage"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/quicksand"
         android:layout_weight="1"
-        android:text="Message" />
-
-    <TextView
-        android:id="@+id/replyChildTimestamp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Timestamp" />
+        android:text="Lorum adflkja sdflkasjdf asdfdlkadnf df dfkldsfklasdf asdfkjlasdf asdflkjas dfjsdjs sdklsd sadndknlsd sdnd sd sd sdnfkjvj "
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"/>
 </LinearLayout>

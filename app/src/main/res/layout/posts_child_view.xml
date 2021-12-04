@@ -3,27 +3,46 @@
     android:id="@+id/parent_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginBottom="20dp"
+    android:background="@drawable/rounding"
+    android:backgroundTint="#9FD5FF"
+    android:orientation="vertical"
+    android:padding="30dp">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/postUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="username" />
+        <TextView
+            android:id="@+id/postUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="username"
+            android:textColor="#006BBF"
+            android:fontFamily="@font/quicksand"/>
+
+        <TextView
+            android:id="@+id/postTimestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="timestamp"
+            android:fontFamily="@font/quicksand"
+            android:textColor="#006BBF"
+            android:textAlignment="viewEnd"/>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/postMessage"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/quicksand"
         android:layout_weight="1"
-        android:text="message" />
+        android:text="Lorum adflkja sdflkasjdf asdfdlkadnf df dfkldsfklasdf asdfkjlasdf asdflkjas dfjsdjs sdklsd sadndknlsd sdnd sd sd sdnfkjvj "
+        android:textColor="@color/white"
+        android:layout_marginTop="10dp"/>
 
-    <TextView
-        android:id="@+id/postTimestamp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="timestamp" />
 </LinearLayout>

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,6 +41,7 @@ public class PostActivity extends AppCompatActivity {
 
         setMessage();
         getReplies();
+        messageText.setMovementMethod(new ScrollingMovementMethod());
 
         RecyclerView recyclerView = findViewById(R.id.repliesRecyclerView);
         adapter = new RecyclerViewAdapterReply(usernames,messages,timestamps,this);
