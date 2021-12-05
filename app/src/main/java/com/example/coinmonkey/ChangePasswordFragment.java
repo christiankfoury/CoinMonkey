@@ -80,7 +80,11 @@ public class ChangePasswordFragment extends Fragment {
             public void onClick(View view) {
                 User user = (User) getActivity().getIntent().getSerializableExtra("user");
 
-                if(!user.getPassword().equals(currentPassword.getText().toString())){
+                if(currentPassword.getText().toString().trim().isEmpty() || newPassword.getText().toString().trim().isEmpty() ||
+                        newPasswordConfirm.getText().toString().trim().isEmpty()){
+                    Toast.makeText(getActivity(),"The password fields can not be left empty!",Toast.LENGTH_SHORT).show();
+                }
+                else if(!user.getPassword().equals(currentPassword.getText().toString())){
                     Toast.makeText(getActivity(),"The current password input is not correct",Toast.LENGTH_SHORT).show();
                 }
                 else if(!newPassword.getText().toString().equals(newPasswordConfirm.getText().toString())){

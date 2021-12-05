@@ -19,14 +19,6 @@
                     android:text="Deposit"/>
 
                 <Button
-                    android:id="@+id/withdrawFragmentButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/quicksand"
-                    android:text="Withdraw" />
-
-                <Button
                     android:id="@+id/changeFragmentPasswordButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

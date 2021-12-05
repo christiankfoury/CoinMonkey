@@ -18,7 +18,7 @@ import android.widget.Button;
  */
 public class SettingsFragment extends Fragment {
 
-    Button deposit,withdraw,changePassword,logout;
+    Button deposit,changePassword,logout;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -67,7 +67,6 @@ public class SettingsFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         deposit = getActivity().findViewById(R.id.depositFragmentButton);
-        withdraw = getActivity().findViewById(R.id.withdrawFragmentButton);
         changePassword = getActivity().findViewById(R.id.changeFragmentPasswordButton);
         logout = getActivity().findViewById(R.id.logoutButton);
 
@@ -77,15 +76,6 @@ public class SettingsFragment extends Fragment {
                 SettingsActivity.fragmentManager.beginTransaction().replace(R.id.frameLayout, new DepositFragment(), null).commit();
 //                i.putExtra("user",getActivity().getIntent().getSerializableExtra("user"));
 //                startActivity(i);
-            }
-        });
-
-        withdraw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity(),WithdrawActivity.class);
-                i.putExtra("user",getActivity().getIntent().getSerializableExtra("user"));
-                startActivity(i);
             }
         });
 
@@ -112,7 +102,6 @@ public class SettingsFragment extends Fragment {
     public void onStart() {
         super.onStart();
         deposit = getActivity().findViewById(R.id.depositFragmentButton);
-        withdraw = getActivity().findViewById(R.id.withdrawFragmentButton);
         changePassword = getActivity().findViewById(R.id.changeFragmentPasswordButton);
         logout = getActivity().findViewById(R.id.logoutButton);
 
@@ -122,15 +111,6 @@ public class SettingsFragment extends Fragment {
                 SettingsActivity.fragmentManager.beginTransaction().replace(R.id.frameLayout, new DepositFragment(), null).commit();
 //                i.putExtra("user",getActivity().getIntent().getSerializableExtra("user"));
 //                startActivity(i);
-            }
-        });
-
-        withdraw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity(),WithdrawActivity.class);
-                i.putExtra("user",getActivity().getIntent().getSerializableExtra("user"));
-                startActivity(i);
             }
         });
 

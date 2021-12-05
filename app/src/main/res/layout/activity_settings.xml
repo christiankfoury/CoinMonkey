@@ -67,27 +67,6 @@
         android:translationZ="100dp"/>
 
     <TextView
-        android:id="@+id/liquidCash"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounding"
-        android:backgroundTint="#964B00"
-        android:padding="10dp"
-        android:shadowColor="@color/black"
-        android:shadowDx="3"
-        android:shadowDy="3"
-        android:shadowRadius="10"
-        android:text="Liquid cash: $100"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.949"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976"
-        android:translationZ="100dp"/>
-
-    <TextView
         android:id="@+id/menuTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

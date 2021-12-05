@@ -83,6 +83,10 @@ public class DepositFragment extends Fragment {
         depositButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(input.getText().toString().trim().isEmpty()){
+                    Toast.makeText(getContext(), "The deposit amount can not be empty!", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 if (Double.parseDouble(input.getText().toString()) < 0) {
                     Toast.makeText(getContext(), "Why would you desposit 0$ ?", Toast.LENGTH_LONG).show();
                     return;
