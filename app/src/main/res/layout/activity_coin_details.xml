@@ -268,49 +268,58 @@
 
     <TextView
         android:id="@+id/low"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
         android:fontFamily="@font/quicksand"
         android:text="$63,833.96"
         android:textColor="@color/black"
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.213"
+        app:layout_constraintHorizontal_bias="0.231"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.797" />
+        app:layout_constraintVertical_bias="0.801"
+        app:autoSizeStepGranularity="2sp"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="2dp"/>
 
     <TextView
         android:id="@+id/price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
         android:fontFamily="@font/quicksand"
         android:text="$62,548.42"
         android:textColor="@color/black"
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.215"
+        app:layout_constraintHorizontal_bias="0.231"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.753" />
+        app:layout_constraintVertical_bias="0.753"
+        app:autoSizeStepGranularity="2sp"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="2dp"/>
+
 
     <TextView
         android:id="@+id/high"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
         android:fontFamily="@font/quicksand"
         android:text="$64,578.98"
         android:textColor="@color/black"
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.213"
+        app:layout_constraintHorizontal_bias="0.231"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.853" />
-
+        app:layout_constraintVertical_bias="0.853"
+        app:autoSizeStepGranularity="2sp"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="2dp"/>
 
     <Button
         android:id="@+id/buy"

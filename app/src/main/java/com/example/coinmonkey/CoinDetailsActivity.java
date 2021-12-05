@@ -122,12 +122,9 @@ public class CoinDetailsActivity extends AppCompatActivity {
                 volumeText = String.valueOf(coinList.get(0).getTotal_volume());
 
                 priceDouble = coinList.get(0).getCurrent_price();
-                price.setText(NumberFormat.getCurrencyInstance(new Locale("en", "US"))
-                        .format(priceDouble));
-                low.setText(NumberFormat.getCurrencyInstance(new Locale("en", "US"))
-                        .format(coinList.get(0).getLow_24h()));
-                high.setText(NumberFormat.getCurrencyInstance(new Locale("en", "US"))
-                        .format(coinList.get(0).getHigh_24h()));
+                price.setText("$ " + priceDouble);
+                low.setText("$ " + coinList.get(0).getLow_24h());
+                high.setText("$ " + coinList.get(0).getHigh_24h());
                 marketCap.setText(NumberFormat.getCurrencyInstance(new Locale("en", "US"))
                         .format(coinList.get(0).getMarket_cap()));
                 if (coinList.get(0).getPrice_change_percentage_24h() < 0) {

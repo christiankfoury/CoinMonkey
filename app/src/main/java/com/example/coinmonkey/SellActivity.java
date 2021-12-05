@@ -187,8 +187,10 @@ public class SellActivity extends AppCompatActivity {
 
 
                     coinAmountSell.setText(coinAmount + "");
-                    coinCurrentCashSell.setText(currentInvestmentValue + "");
-                    initialInvestmentSell.setText(initialInvestment + "");
+                    coinCurrentCashSell.setText(NumberFormat.getCurrencyInstance(new Locale("en", "US"))
+                            .format(currentInvestmentValue));
+                    initialInvestmentSell.setText(NumberFormat.getCurrencyInstance(new Locale("en", "US"))
+                            .format(initialInvestment));
                 }
             });
         }
