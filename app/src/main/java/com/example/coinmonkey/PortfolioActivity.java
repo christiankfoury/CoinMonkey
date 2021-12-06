@@ -30,6 +30,7 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class PortfolioActivity extends AppCompatActivity {
     RecyclerView recyclerViewAdapterPortfolio;
@@ -48,6 +49,9 @@ public class PortfolioActivity extends AppCompatActivity {
     TextView totalPortfolioValue;
     Double liquidCash = 0.0;
     private RecyclerViewAdapterPortfolio.RecyclerViewClickListenerPortfolio listener;
+    FloatingActionButton menu,home,orders,portfolio,wishlist,settings,forum;
+    TextView menuText,homeText,ordersText,portfolioText,wishlistText,settingsText,forumText;
+    boolean isFABVisible;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,7 @@ public class PortfolioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_portfolio);
 
         pieChart = findViewById(R.id.pieChart);
+        setFAB();
 
 
         // hashmap for corresponding values of symbol to names,
@@ -214,4 +219,125 @@ public class PortfolioActivity extends AppCompatActivity {
             }
         };
     }
+
+    private void setFAB(){
+        menu = findViewById(R.id.menuButton);
+        home = findViewById(R.id.homeButton);
+        orders = findViewById(R.id.ordersButton);
+        portfolio = findViewById(R.id.portfolioButton);
+        wishlist = findViewById(R.id.wishlistButton);
+        settings = findViewById(R.id.settingsButton);
+        forum = findViewById(R.id.forumButton);
+
+        menuText = findViewById(R.id.menuTextView);
+        homeText = findViewById(R.id.homeTextView);
+        ordersText = findViewById(R.id.ordersTextView);
+        portfolioText = findViewById(R.id.portfolioTextView);
+        wishlistText = findViewById(R.id.wishlistTextView);
+        settingsText = findViewById(R.id.settingsTextView);
+        forumText = findViewById(R.id.forumTextView);
+
+        home.setVisibility(View.GONE);
+        orders.setVisibility(View.GONE);
+        portfolio.setVisibility(View.GONE);
+        wishlist.setVisibility(View.GONE);
+        settings.setVisibility(View.GONE);
+        forum.setVisibility(View.GONE);
+
+        menuText.setVisibility(View.GONE);
+        homeText.setVisibility(View.GONE);
+        ordersText.setVisibility(View.GONE);
+        portfolioText.setVisibility(View.GONE);
+        wishlistText.setVisibility(View.GONE);
+        settingsText.setVisibility(View.GONE);
+        forumText.setVisibility(View.GONE);
+
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!isFABVisible){
+                    home.show();
+                    orders.show();
+                    portfolio.show();
+                    wishlist.show();
+                    settings.show();
+                    forum.show();
+                    menuText.setVisibility(View.VISIBLE);
+                    homeText.setVisibility(View.VISIBLE);
+                    ordersText.setVisibility(View.VISIBLE);
+                    portfolioText.setVisibility(View.VISIBLE);
+                    wishlistText.setVisibility(View.VISIBLE);
+                    settingsText.setVisibility(View.VISIBLE);
+                    forumText.setVisibility(View.VISIBLE);
+                    isFABVisible = true;
+                }
+                else{
+                    home.hide();
+                    orders.hide();
+                    portfolio.hide();
+                    wishlist.hide();
+                    settings.hide();
+                    forum.hide();
+                    menuText.setVisibility(View.GONE);
+                    homeText.setVisibility(View.GONE);
+                    ordersText.setVisibility(View.GONE);
+                    portfolioText.setVisibility(View.GONE);
+                    wishlistText.setVisibility(View.GONE);
+                    settingsText.setVisibility(View.GONE);
+                    forumText.setVisibility(View.GONE);
+                    isFABVisible = false;
+                }
+            }
+        });
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(PortfolioActivity.this,CoinsActivity.class);
+                i.putExtra("user",getIntent().getSerializableExtra("user"));
+                startActivity(i);
+            }
+        });
+        orders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(PortfolioActivity.this,OrdersActivity.class);
+                i.putExtra("user",getIntent().getSerializableExtra("user"));
+                startActivity(i);
+            }
+        });
+        portfolio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(PortfolioActivity.this,PortfolioActivity.class);
+                i.putExtra("user",getIntent().getSerializableExtra("user"));
+                startActivity(i);
+            }
+        });
+        wishlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(PortfolioActivity.this, WatchlistActivity.class);
+                i.putExtra("user",getIntent().getSerializableExtra("user"));
+                startActivity(i);
+            }
+        });
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(PortfolioActivity.this,SettingsActivity.class);
+                i.putExtra("user",getIntent().getSerializableExtra("user"));
+                startActivity(i);
+            }
+        });
+
+        forum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(PortfolioActivity.this, ForumActivity.class);
+                i.putExtra("user",getIntent().getSerializableExtra("user"));
+                startActivity(i);
+            }
+        });
+    }
+
 }
