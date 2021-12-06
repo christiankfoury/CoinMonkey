@@ -45,46 +45,26 @@
         android:fontFamily="@font/quicksand"
         android:textStyle="bold"
         android:visibility="invisible"/>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:translationZ="100dp">
-
-        <TextView
-            android:id="@+id/homeTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounding"
-            android:backgroundTint="#964B00"
-            android:padding="10dp"
-            android:shadowColor="@color/black"
-            android:shadowDx="3"
-            android:shadowDy="3"
-            android:shadowRadius="10"
-            android:text="Home"
-            android:textColor="@color/white"
-            android:translationZ="100dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.796"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.177" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/menuButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:translationZ="100dp"
             app:backgroundTint="#E6B99F"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.957"
+            app:layout_constraintHorizontal_bias="0.954"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.074"
-            app:srcCompat="@drawable/ic_menu" />
+            app:layout_constraintVertical_bias="0.023"
+            app:srcCompat="@drawable/ic_menu"
+            android:translationZ="100dp"/>
 
         <TextView
             android:id="@+id/menuTextView"
@@ -99,103 +79,124 @@
             android:shadowRadius="10"
             android:text="Close Menu"
             android:textColor="@color/white"
-            android:translationZ="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.776"
+            app:layout_constraintHorizontal_bias="0.772"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.083" />
+            app:layout_constraintVertical_bias="0.035"
+            android:translationZ="100dp"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/homeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:translationZ="100dp"
             app:backgroundTint="#E6B99F"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.957"
+            app:layout_constraintHorizontal_bias="0.954"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.168"
-            app:srcCompat="@drawable/ic_home" />
+            app:layout_constraintVertical_bias="0.12"
+            app:srcCompat="@drawable/ic_home"
+            android:translationZ="100dp"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/ordersButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:translationZ="100dp"
             app:backgroundTint="#E6B99F"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.957"
+            app:layout_constraintHorizontal_bias="0.954"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.266"
-            app:srcCompat="@drawable/ic_orders" />
+            app:layout_constraintVertical_bias="0.217"
+            app:srcCompat="@drawable/ic_orders"
+            android:translationZ="100dp"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/portfolioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:translationZ="100dp"
             app:backgroundTint="#E6B99F"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.957"
+            app:layout_constraintHorizontal_bias="0.954"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.367"
-            app:srcCompat="@drawable/ic_portfolio" />
+            app:layout_constraintVertical_bias="0.317"
+            app:srcCompat="@drawable/ic_portfolio"
+            android:translationZ="100dp"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/wishlistButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:translationZ="100dp"
             app:backgroundTint="#E6B99F"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.957"
+            app:layout_constraintHorizontal_bias="0.954"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.471"
-            app:srcCompat="@drawable/ic_watchlist" />
+            app:layout_constraintVertical_bias="0.417"
+            app:srcCompat="@drawable/ic_watchlist"
+            android:translationZ="100dp"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/settingsButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:translationZ="100dp"
             app:backgroundTint="#E6B99F"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.957"
+            app:layout_constraintHorizontal_bias="0.954"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.573"
-            app:srcCompat="@drawable/ic_settings" />
+            app:layout_constraintVertical_bias="0.514"
+            app:srcCompat="@drawable/ic_settings"
+            android:translationZ="100dp"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/forumButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:translationZ="100dp"
             app:backgroundTint="#E6B99F"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.957"
+            app:layout_constraintHorizontal_bias="0.954"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.675"
-            app:srcCompat="@drawable/ic_forum" />
+            app:layout_constraintVertical_bias="0.61"
+            app:srcCompat="@drawable/ic_forum"
+            android:translationZ="100dp"/>
+
+        <TextView
+            android:id="@+id/homeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounding"
+            android:backgroundTint="#964B00"
+            android:padding="10dp"
+            android:shadowColor="@color/black"
+            android:shadowDx="3"
+            android:shadowDy="3"
+            android:shadowRadius="10"
+            android:text="Home"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.796"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.131"
+            android:translationZ="100dp"/>
 
         <TextView
             android:id="@+id/ordersTextView"
@@ -210,13 +211,13 @@
             android:shadowRadius="10"
             android:text="Orders"
             android:textColor="@color/white"
-            android:translationZ="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.787"
+            app:layout_constraintHorizontal_bias="0.793"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.284" />
+            app:layout_constraintVertical_bias="0.225"
+            android:translationZ="100dp"/>
 
         <TextView
             android:id="@+id/portfolioTextView"
@@ -231,13 +232,13 @@
             android:shadowRadius="10"
             android:text="Portfolio"
             android:textColor="@color/white"
-            android:translationZ="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.789"
+            app:layout_constraintHorizontal_bias="0.786"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.372" />
+            app:layout_constraintVertical_bias="0.322"
+            android:translationZ="100dp"/>
 
         <TextView
             android:id="@+id/wishlistTextView"
@@ -252,13 +253,13 @@
             android:shadowRadius="10"
             android:text="Watchlist"
             android:textColor="@color/white"
-            android:translationZ="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.783"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.472" />
+            app:layout_constraintVertical_bias="0.42"
+            android:translationZ="100dp"/>
 
         <TextView
             android:id="@+id/settingsTextView"
@@ -273,13 +274,13 @@
             android:shadowRadius="10"
             android:text="Settings"
             android:textColor="@color/white"
-            android:translationZ="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.788"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.559" />
+            app:layout_constraintVertical_bias="0.514"
+            android:translationZ="100dp"/>
 
         <TextView
             android:id="@+id/forumTextView"
@@ -294,12 +295,12 @@
             android:shadowRadius="10"
             android:text="Forum"
             android:textColor="@color/white"
-            android:translationZ="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.789"
+            app:layout_constraintHorizontal_bias="0.794"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.669" />
+            app:layout_constraintVertical_bias="0.609"
+            android:translationZ="100dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>
