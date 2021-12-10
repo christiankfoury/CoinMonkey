@@ -94,7 +94,7 @@ public class CoinsActivity extends AppCompatActivity {
             public void onClick(View view, int position) {
                 String coin_symbol = coinSymbols.get(position);
 
-                Toast.makeText(getApplicationContext(),coin_symbol + " was clicked!",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(),coin_symbol + " was clicked!",Toast.LENGTH_SHORT).show();
 
                 Intent i = new Intent(CoinsActivity.this,CoinDetailsActivity.class);
                 i.putExtra("symbol",coin_symbol);

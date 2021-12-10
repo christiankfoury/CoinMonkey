@@ -78,7 +78,7 @@ public class ForumActivity extends AppCompatActivity {
             @Override
             public void onClick(View view, int position) {
                 int post_id = postIds.get(position);
-                Toast.makeText(getApplicationContext(), "Message " + post_id + " was clicked!", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "Message " + post_id + " was clicked!", Toast.LENGTH_SHORT).show();
                 User user = (User) getIntent().getSerializableExtra("user");
                 Intent i = new Intent(ForumActivity.this,PostActivity.class);
                 i.putExtra("user",user);

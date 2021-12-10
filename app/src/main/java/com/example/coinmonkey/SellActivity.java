@@ -179,6 +179,7 @@ public class SellActivity extends AppCompatActivity {
 
                     myDB.insertOrder(symbol.toUpperCase(), user.getUsername(),"sell", sellAmountDouble / coinPrice);
                     myDB.updateBalance(user.getUsername(), userBalance + sellAmountDouble);
+                    userBalance = userBalance + sellAmountDouble;
 
                     coinAmount = newAmountOfCoins;
                     currentInvestmentValue = coinPrice * coinAmount;

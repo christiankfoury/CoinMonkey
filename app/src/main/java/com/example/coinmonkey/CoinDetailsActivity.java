@@ -169,7 +169,7 @@ public class CoinDetailsActivity extends AppCompatActivity {
         buy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (amount.equals("")) {
+                if (amount.getText().toString().equals("")) {
                     Toast.makeText(getApplicationContext(), "Amount must not be empty!", Toast.LENGTH_LONG).show();
                     return;
                 }
